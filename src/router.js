@@ -40,6 +40,6 @@ router.put('/todo/:_id/task/:taskId/done', withAuth, loadTodo, taskController.up
 router.delete('/todo/:_id/task/:taskId', withAuth, loadTodo, taskController.delete);
 
 // Achievement routes
-router.post('/achievement', achievementController.create);
-router.post('/achievement/_id', withAuth, achievementController.linkUser)
+router.get('/achievement', withAuth,achievementController.getAll);
+router.get('/userachievement', withAuth, achievementController.getUserAchievements);
 module.exports = router;
