@@ -3,22 +3,32 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const jwtSecret = process.env.JWT_KEY;
 
-module.exports = {  
+module.exports = {
     register: async (req, res) => {
         try {
             const { name, email, password } = req.body;
             const user = new User({ name, email, password });
             await user.save();
 
-            const token = jwt.sign({ _id: user._id, email: user.email }, jwtSecret, { expiresIn: "14d"});
+            const token = jwt.sign({ _id: user._id, email: user.email }, jwtSecret, { expiresIn: "14d" });
 
             return res.status(201).json({
                 user: {
                     _id: user._id,
                     name: user.name,
                     email: user.email,
+                    achievements: user.achievements,
                     level: user.level,
                     experience: user.experience,
+                    numberCreateNotes: user.numberCreateNotes,
+                    numberCreateTodos: user.numberCreateTodos,
+                    numberCreateTasks: user.numberCreateTasks,
+                    numberUpdateNotes: user.numberUpdateNotes,
+                    numberUpdateTodos: user.numberUpdateTodos,
+                    numberUpdateTasks: user.numberUpdateTasks,
+                    numberDeleteNotes: user.numberDeleteNotes,
+                    numberDeleteTodos: user.numberDeleteTodos,
+                    numberDeleteTasks: user.numberDeleteTasks,
                     createdAt: user.createdAt,
                 },
                 token
@@ -50,8 +60,18 @@ module.exports = {
                     _id: user._id,
                     name: user.name,
                     email: user.email,
+                    achievements: user.achievements,
                     level: user.level,
                     experience: user.experience,
+                    numberCreateNotes: user.numberCreateNotes,
+                    numberCreateTodos: user.numberCreateTodos,
+                    numberCreateTasks: user.numberCreateTasks,
+                    numberUpdateNotes: user.numberUpdateNotes,
+                    numberUpdateTodos: user.numberUpdateTodos,
+                    numberUpdateTasks: user.numberUpdateTasks,
+                    numberDeleteNotes: user.numberDeleteNotes,
+                    numberDeleteTodos: user.numberDeleteTodos,
+                    numberDeleteTasks: user.numberDeleteTasks,
                     createdAt: user.createdAt,
                 },
                 token

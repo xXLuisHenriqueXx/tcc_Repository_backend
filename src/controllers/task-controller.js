@@ -1,9 +1,12 @@
 const mongoose = require("mongoose");
+const calculateLevel = require('../utils/calculateLevel');
+const checkTasksAchievements = require('../utils/checkTasksAchievements');
 
 const TaskController = {
     add: async (req, res) => {
         try {
             const { title, done } = req.body;
+            const user = req.user;
 
             const task = {
                 _id: new mongoose.Types.ObjectId(),
@@ -15,6 +18,10 @@ const TaskController = {
 
             await req.todo.save();
 
+            await user.updateOne({ $inc: { numberCreateTasks: 1 } });
+            await checkTasksAchievements.checkCreateAchievements(user.numberCreateTasks, user._id);
+            await calculateLevel(user._id);
+
             return res.status(201).json(task);
         } catch (err) {
             return res.status(400).json({ error: err.message });
@@ -25,6 +32,8 @@ const TaskController = {
         try {
             const { title } = req.body;
             const { taskId } = req.params;
+            const user = req.user;
+
             const indexToUpdate = req.todo.tasks.findIndex(task => task._id == taskId);
 
             if (indexToUpdate === -1) {
@@ -34,6 +43,10 @@ const TaskController = {
             req.todo.tasks[indexToUpdate].title = title || req.todo.tasks[indexToUpdate].title;
 
             await req.todo.save();
+
+            await user.updateOne({ $inc: { numberUpdateTasks: 1 } });
+            await checkTasksAchievements.checkUpdateAchievements(user.numberUpdateTasks, user._id);
+            await calculateLevel(user._id);
 
             return res.status(200).json(req.todo.tasks[indexToUpdate]);
         } catch (err) {
@@ -64,6 +77,8 @@ const TaskController = {
     delete: async (req, res) => {
         try {
             const { taskId } = req.params;
+            const user = req.user;
+
             const indexToDelete = req.todo.tasks.findIndex(task => task._id == taskId);
 
             if (indexToDelete === -1) {
@@ -73,6 +88,10 @@ const TaskController = {
             req.todo.tasks.splice(indexToDelete, 1);
 
             await req.todo.save();
+
+            await user.updateOne({ $inc: { numberDeleteTasks: 1 } });
+            await checkTasksAchievements.checkDeleteAchievements(user.numberDeleteTasks, user._id);
+            await calculateLevel(user._id);
 
             return res.status(204).send();
         } catch (err) {

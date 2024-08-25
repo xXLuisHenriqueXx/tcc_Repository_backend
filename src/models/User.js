@@ -6,16 +6,25 @@ const userSchema = new Schema({
     name: String,
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    level: { type: Number, default: 1 },
     achievements: [{ type: Schema.Types.ObjectId, ref: "Achievement" }],
+    level: { type: Number, default: 1 },
     experience: { type: Number, default: 0 },
+    numberCreateNotes: { type: Number, default: 0 },
+    numberCreateTodos: { type: Number, default: 0 },
+    numberCreateTasks: { type: Number, default: 0 },
+    numberUpdateNotes: { type: Number, default: 0 },
+    numberUpdateTodos: { type: Number, default: 0 },
+    numberUpdateTasks: { type: Number, default: 0 },
+    numberDeleteNotes: { type: Number, default: 0 },
+    numberDeleteTodos: { type: Number, default: 0 },
+    numberDeleteTasks: { type: Number, default: 0 },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
 });
 
 
 // Função que criptografa a senha do usuário antes de salvar no banco de dados
-userSchema.pre("save", function(next) {
+userSchema.pre("save", function (next) {
     if (this.isNew || this.isModified("password")) {
         bcrypt.hash(this.password, 10, (err, hashedPassword) => {
             if (err) {
