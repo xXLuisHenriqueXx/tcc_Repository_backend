@@ -26,7 +26,7 @@ const noteController = {
             await note.save();
 
             await user.updateOne({ $inc: { numberCreateNotes: 1 } });
-            await checkNotesAchievements.checkCreateNoteAchievements(user.numberCreateNotes, user._id);
+            await checkNotesAchievements.checkCreateNoteAchievements(user.numberCreateNotes + 1, user._id);
             await calculateLevel(user._id);
 
             return res.status(201).json(note);
@@ -54,7 +54,7 @@ const noteController = {
             await note.save();
 
             await user.updateOne({ $inc: { numberUpdateNotes: 1 } });
-            await checkNotesAchievements.checkUpdateNoteAchievements(user.numberUpdateNotes, user._id);
+            await checkNotesAchievements.checkUpdateNoteAchievements(user.numberUpdateNotes + 1, user._id);
             await calculateLevel(user._id);
 
             return res.status(200).json(note);
@@ -77,7 +77,7 @@ const noteController = {
             await note.deleteOne({ _id: note._id });
 
             await user.updateOne({ $inc: { numberDeleteNotes: 1 } });
-            await checkDeleteNoteAchievements(user.numberDeleteNotes, user._id);
+            await checkDeleteNoteAchievements(user.numberDeleteNotes + 1, user._id);
             await calculateLevel(user._id);
 
             return res.status(204).json();

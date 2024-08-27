@@ -41,5 +41,5 @@ router.delete('/todo/:_id/task/:taskId', withAuth, loadTodo, taskController.dele
 
 // Achievement routes
 router.get('/achievement', withAuth,achievementController.getAll);
-router.get('/userachievement', withAuth, achievementController.getUserAchievements);
+
 module.exports = router;

@@ -19,7 +19,7 @@ const TaskController = {
             await req.todo.save();
 
             await user.updateOne({ $inc: { numberCreateTasks: 1 } });
-            await checkTasksAchievements.checkCreateAchievements(user.numberCreateTasks, user._id);
+            await checkTasksAchievements.checkCreateAchievements(user.numberCreateTasks + 1, user._id);
             await calculateLevel(user._id);
 
             return res.status(201).json(task);
@@ -45,7 +45,7 @@ const TaskController = {
             await req.todo.save();
 
             await user.updateOne({ $inc: { numberUpdateTasks: 1 } });
-            await checkTasksAchievements.checkUpdateAchievements(user.numberUpdateTasks, user._id);
+            await checkTasksAchievements.checkUpdateAchievements(user.numberUpdateTasks + 1, user._id);
             await calculateLevel(user._id);
 
             return res.status(200).json(req.todo.tasks[indexToUpdate]);
@@ -90,7 +90,7 @@ const TaskController = {
             await req.todo.save();
 
             await user.updateOne({ $inc: { numberDeleteTasks: 1 } });
-            await checkTasksAchievements.checkDeleteAchievements(user.numberDeleteTasks, user._id);
+            await checkTasksAchievements.checkDeleteAchievements(user.numberDeleteTasks + 1, user._id);
             await calculateLevel(user._id);
 
             return res.status(204).send();

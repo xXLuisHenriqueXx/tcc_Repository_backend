@@ -27,7 +27,7 @@ const todoController = {
       await todo.save();
 
       await user.updateOne({ $inc: { numberCreateTodos: 1 } });
-      await checkTodosAchievements.checkCreateTodoAchievements(user.numberCreateTodos, user._id);
+      await checkTodosAchievements.checkCreateTodoAchievements(user.numberCreateTodos + 1, user._id);
       await calculateLevel(user._id);
 
       res.status(201).json(todo);
@@ -54,7 +54,7 @@ const todoController = {
       await todo.save();
 
       await user.updateOne({ $inc: { numberUpdateTodos: 1 } });
-      await checkTodosAchievements.checkUpdateTodoAchievements(user.numberUpdateTodos, user._id);
+      await checkTodosAchievements.checkUpdateTodoAchievements(user.numberUpdateTodos + 1, user._id);
       await calculateLevel(user._id);
 
       res.status(200).json(todo);
@@ -77,7 +77,7 @@ const todoController = {
       await todo.deleteOne({ _id: todo._id });
 
       await user.updateOne({ $inc: { numberDeleteTodos: 1 } });
-      await checkTodosAchievements.checkDeleteTodoAchievements(user.numberDeleteTodos, user._id);
+      await checkTodosAchievements.checkDeleteTodoAchievements(user.numberDeleteTodos + 1, user._id);
       await calculateLevel(user._id);
 
       res.status(204).json();
