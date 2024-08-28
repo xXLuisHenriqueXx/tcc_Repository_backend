@@ -10,6 +10,7 @@ const userSchema = new Schema({
     level: { type: Number, default: 1 },
     experience: { type: Number, default: 0 },
     experienceToNextLevel: { type: Number, default: 40 },
+    prevExperienceToNextLevel: { type: Number, default: 0 },
     numberCreateNotes: { type: Number, default: 0 },
     numberCreateTodos: { type: Number, default: 0 },
     numberCreateTasks: { type: Number, default: 0 },

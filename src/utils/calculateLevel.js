@@ -7,22 +7,25 @@ const calculateLevel = async (userId) => {
     let experience = user.experience;
     let level = 1;
     let xpToNextLevel = baseXP;
+    let prevXpToNextLevel = 0;
 
     while (experience >= xpToNextLevel) {
         level++;
         experience -= xpToNextLevel;
+        prevXpToNextLevel = xpToNextLevel;
         xpToNextLevel = Math.floor(baseXP * Math.pow(growthRate, level - 1));
-
-        user.experienceToNextLevel = xpToNextLevel;
-        await user.save();  // Save the updated experience to the database
     }
 
     if (user.level !== level) {
         user.level = level;
-        await user.save();  // Save the updated user level to the database
     }
 
+    user.experienceToNextLevel = xpToNextLevel;
+    user.prevExperienceToNextLevel = prevXpToNextLevel;
+
+    await user.save();
+
     return level;
-}
+};
 
 module.exports = calculateLevel;
