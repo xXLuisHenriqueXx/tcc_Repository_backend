@@ -13,7 +13,7 @@ const calculateLevel = async (userId) => {
         experience -= xpToNextLevel;
         xpToNextLevel = Math.floor(baseXP * Math.pow(growthRate, level - 1));
 
-        user.xpToNextLevel = xpToNextLevel;
+        user.experienceToNextLevel = xpToNextLevel;
         await user.save();  // Save the updated experience to the database
     }
 

@@ -4,7 +4,7 @@
         "description": "Você criou sua primeira nota!",
         "requirement": "CREATED_NOTE_1",
         "type": "_note",
-        "imageUrl": "https://drive.google.com/file/d/1vikhCjR6wTtMRS-dffC38afEjnD6lRA9/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1vikhCjR6wTtMRS-dffC38afEjnD6lRA9",
         "expGiven": 10
     },
     {
@@ -12,7 +12,7 @@
         "description": "Você criou cinco notas!",
         "requirement": "CREATED_NOTE_5",
         "type": "_note",
-        "imageUrl": "https://drive.google.com/file/d/19bscAfeU8KOvRdRj0ZaUlkzFboS7iqA5/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=19bscAfeU8KOvRdRj0ZaUlkzFboS7iqA5",
         "expGiven": 20
     },
     {
@@ -20,7 +20,7 @@
         "description": "Você criou dez notas!",
         "requirement": "CREATED_NOTE_10",
         "type": "_note",
-        "imageUrl": "https://drive.google.com/file/d/1WyGudnx5qNn3axrAzFctnVUHwaF-Q7GY/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1WyGudnx5qNn3axrAzFctnVUHwaF-Q7GY",
         "expGiven": 30
     },
     {
@@ -28,7 +28,7 @@
         "description": "Você criou vinte notas!",
         "requirement": "CREATED_NOTE_20",
         "type": "_note",
-        "imageUrl": "https://drive.google.com/file/d/1SjeJbUnizebYyLntE-1u8Rw7IdTIDJ5J/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1SjeJbUnizebYyLntE-1u8Rw7IdTIDJ5J",
         "expGiven": 40
     },
     {
@@ -36,7 +36,7 @@
         "description": "Você criou trinta notas!",
         "requirement": "CREATED_NOTE_30",
         "type": "_note",
-        "imageUrl": "https://drive.google.com/file/d/1UhBaUfvZwEmaWC-MCqVuAUkB0fmFsQuu/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1UhBaUfvZwEmaWC-MCqVuAUkB0fmFsQuu",
         "expGiven": 50
     },
     {
@@ -44,7 +44,7 @@
         "description": "Você atualizou sua primeira nota!",
         "requirement": "UPDATED_NOTE_1",
         "type": "_note",
-        "imageUrl": "https://drive.google.com/file/d/16S_IMLWbGQYsNrdW-ZI9NY-Z-2o9Y8BF/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=16S_IMLWbGQYsNrdW-ZI9NY-Z-2o9Y8BF",
         "expGiven": 10
     },
     {
@@ -52,7 +52,7 @@
         "description": "Você atualizou cinco notas!",
         "requirement": "UPDATED_NOTE_5",
         "type": "_note",
-        "imageUrl": "https://drive.google.com/file/d/1UH7mzFocW_3XaIGgAIZ8NDsha83tEAW-/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1UH7mzFocW_3XaIGgAIZ8NDsha83tEAW-",
         "expGiven": 20
     },
     {
@@ -60,7 +60,7 @@
         "description": "Você atualizou dez notas!",
         "requirement": "UPDATED_NOTE_10",
         "type": "_note",
-        "imageUrl": "https://drive.google.com/file/d/1BIsJixXVG0WGU7C09N05tcwL3tWt27dc/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1BIsJixXVG0WGU7C09N05tcwL3tWt27dc",
         "expGiven": 30
     },
     {
@@ -68,7 +68,7 @@
         "description": "Você atualizou vinte notas!",
         "requirement": "UPDATED_NOTE_20",
         "type": "_note",
-        "imageUrl": "https://drive.google.com/file/d/1dGQ6eh-deBkUYPLjkpnjcST1eJnLkhiv/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1dGQ6eh-deBkUYPLjkpnjcST1eJnLkhiv",
         "expGiven": 40
     },
     {
@@ -76,7 +76,7 @@
         "description": "Você atualizou trinta notas!",
         "requirement": "UPDATED_NOTE_30",
         "type": "_note",
-        "imageUrl": "https://drive.google.com/file/d/1NbTFuckefaJHuitT44ErwTPALlaCAlJo/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1NbTFuckefaJHuitT44ErwTPALlaCAlJo",
         "expGiven": 50
     },
     {
@@ -84,7 +84,7 @@
         "description": "Você deletou sua primeira nota!",
         "requirement": "DELETED_NOTE_1",
         "type": "_note",
-        "imageUrl": "https://drive.google.com/file/d/1bShAYe-dBR-vPM93I_pMCEugJnNky4ME/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1bShAYe-dBR-vPM93I_pMCEugJnNky4ME",
         "expGiven": 10
     },
     {
@@ -92,7 +92,7 @@
         "description": "Você deletou cinco notas!",
         "requirement": "DELETED_NOTE_5",
         "type": "_note",
-        "imageUrl": "https://drive.google.com/file/d/1v5DMof8cSsqTaD-ILqse65hrdzrCQppC/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1v5DMof8cSsqTaD-ILqse65hrdzrCQppC",
         "expGiven": 20
     },
     {
@@ -100,7 +100,7 @@
         "description": "Você deletou dez notas!",
         "requirement": "DELETED_NOTE_10",
         "type": "_note",
-        "imageUrl": "https://drive.google.com/file/d/1KMlnCHzW8rc4km8rWLZ1-jp16uoY_TKu/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1KMlnCHzW8rc4km8rWLZ1-jp16uoY_TKu",
         "expGiven": 30
     },
     {
@@ -108,7 +108,7 @@
         "description": "Você deletou vinte notas!",
         "requirement": "DELETED_NOTE_20",
         "type": "_note",
-        "imageUrl": "https://drive.google.com/file/d/14lbhLS2B1geb0caSWgiz-fen0wSWcIQh/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=14lbhLS2B1geb0caSWgiz-fen0wSWcIQh",
         "expGiven": 40
     },
     {
@@ -116,7 +116,7 @@
         "description": "Você deletou trinta notas!",
         "requirement": "DELETED_NOTE_30",
         "type": "_note",
-        "imageUrl": "https://drive.google.com/file/d/1KvxJo9s1qdxrube4cdnzYtc2zfkVweHT/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1KvxJo9s1qdxrube4cdnzYtc2zfkVweHT",
         "expGiven": 50
     },
     {
@@ -124,7 +124,7 @@
         "description": "Você criou sua primeira lista de tarefas!",
         "requirement": "CREATED_TODO_1",
         "type": "_todo",
-        "imageUrl": "https://drive.google.com/file/d/1vikhCjR6wTtMRS-dffC38afEjnD6lRA9/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1vikhCjR6wTtMRS-dffC38afEjnD6lRA9",
         "expGiven": 10
     },
     {
@@ -132,7 +132,7 @@
         "description": "Você criou cinco listas de tarefas!",
         "requirement": "CREATED_TODO_5",
         "type": "_todo",
-        "imageUrl": "https://drive.google.com/file/d/19bscAfeU8KOvRdRj0ZaUlkzFboS7iqA5/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=19bscAfeU8KOvRdRj0ZaUlkzFboS7iqA5",
         "expGiven": 20
     },
     {
@@ -140,7 +140,7 @@
         "description": "Você criou dez listas de tarefas!",
         "requirement": "CREATED_TODO_10",
         "type": "_todo",
-        "imageUrl": "https://drive.google.com/file/d/1WyGudnx5qNn3axrAzFctnVUHwaF-Q7GY/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1WyGudnx5qNn3axrAzFctnVUHwaF-Q7GY",
         "expGiven": 30
     },
     {
@@ -148,7 +148,7 @@
         "description": "Você criou vinte listas de tarefas!",
         "requirement": "CREATED_TODO_20",
         "type": "_todo",
-        "imageUrl": "https://drive.google.com/file/d/1SjeJbUnizebYyLntE-1u8Rw7IdTIDJ5J/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1SjeJbUnizebYyLntE-1u8Rw7IdTIDJ5J",
         "expGiven": 40
     },
     {
@@ -156,7 +156,7 @@
         "description": "Você criou trinta listas de tarefas!",
         "requirement": "CREATED_TODO_30",
         "type": "_todo",
-        "imageUrl": "https://drive.google.com/file/d/1UhBaUfvZwEmaWC-MCqVuAUkB0fmFsQuu/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1UhBaUfvZwEmaWC-MCqVuAUkB0fmFsQuu",
         "expGiven": 50
     },
     {
@@ -164,7 +164,7 @@
         "description": "Você atualizou sua primeira lista de tarefas!",
         "requirement": "UPDATED_TODO_1",
         "type": "_todo",
-        "imageUrl": "https://drive.google.com/file/d/16S_IMLWbGQYsNrdW-ZI9NY-Z-2o9Y8BF/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=16S_IMLWbGQYsNrdW-ZI9NY-Z-2o9Y8BF",
         "expGiven": 10
     },
     {
@@ -172,7 +172,7 @@
         "description": "Você atualizou cinco listas de tarefas!",
         "requirement": "UPDATED_TODO_5",
         "type": "_todo",
-        "imageUrl": "https://drive.google.com/file/d/1UH7mzFocW_3XaIGgAIZ8NDsha83tEAW-/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1UH7mzFocW_3XaIGgAIZ8NDsha83tEAW-",
         "expGiven": 20
     },
     {
@@ -180,7 +180,7 @@
         "description": "Você atualizou dez listas de tarefas!",
         "requirement": "UPDATED_TODO_10",
         "type": "_todo",
-        "imageUrl": "https://drive.google.com/file/d/1BIsJixXVG0WGU7C09N05tcwL3tWt27dc/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1BIsJixXVG0WGU7C09N05tcwL3tWt27dc",
         "expGiven": 30
     },
     {
@@ -188,7 +188,7 @@
         "description": "Você atualizou vinte listas de tarefas!",
         "requirement": "UPDATED_TODO_20",
         "type": "_todo",
-        "imageUrl": "https://drive.google.com/file/d/1dGQ6eh-deBkUYPLjkpnjcST1eJnLkhiv/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1dGQ6eh-deBkUYPLjkpnjcST1eJnLkhiv",
         "expGiven": 40
     },
     {
@@ -196,7 +196,7 @@
         "description": "Você atualizou trinta listas de tarefas!",
         "requirement": "UPDATED_TODO_30",
         "type": "_todo",
-        "imageUrl": "https://drive.google.com/file/d/1NbTFuckefaJHuitT44ErwTPALlaCAlJo/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1NbTFuckefaJHuitT44ErwTPALlaCAlJo",
         "expGiven": 50
     },
     {
@@ -204,7 +204,7 @@
         "description": "Você deletou sua primeira lista de tarefas!",
         "requirement": "DELETED_TODO_1",
         "type": "_todo",
-        "imageUrl": "https://drive.google.com/file/d/1bShAYe-dBR-vPM93I_pMCEugJnNky4ME/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1bShAYe-dBR-vPM93I_pMCEugJnNky4ME",
         "expGiven": 10
     },
     {
@@ -212,7 +212,7 @@
         "description": "Você deletou cinco listas de tarefas!",
         "requirement": "DELETED_TODO_5",
         "type": "_todo",
-        "imageUrl": "https://drive.google.com/file/d/1v5DMof8cSsqTaD-ILqse65hrdzrCQppC/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1v5DMof8cSsqTaD-ILqse65hrdzrCQppC",
         "expGiven": 20
     },
     {
@@ -220,7 +220,7 @@
         "description": "Você deletou dez listas de tarefas!",
         "requirement": "DELETED_TODO_10",
         "type": "_todo",
-        "imageUrl": "https://drive.google.com/file/d/1KMlnCHzW8rc4km8rWLZ1-jp16uoY_TKu/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1KMlnCHzW8rc4km8rWLZ1-jp16uoY_TKu",
         "expGiven": 30
     },
     {
@@ -228,7 +228,7 @@
         "description": "Você deletou vinte listas de tarefas!",
         "requirement": "DELETED_TODO_20",
         "type": "_todo",
-        "imageUrl": "https://drive.google.com/file/d/14lbhLS2B1geb0caSWgiz-fen0wSWcIQh/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=14lbhLS2B1geb0caSWgiz-fen0wSWcIQh",
         "expGiven": 40
     },
     {
@@ -236,7 +236,7 @@
         "description": "Você deletou trinta listas de tarefas!",
         "requirement": "DELETED_TODO_30",
         "type": "_todo",
-        "imageUrl": "https://drive.google.com/file/d/1KvxJo9s1qdxrube4cdnzYtc2zfkVweHT/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1KvxJo9s1qdxrube4cdnzYtc2zfkVweHT",
         "expGiven": 50
     },
     {
@@ -244,7 +244,7 @@
         "description": "Você criou sua primeira tarefa!",
         "requirement": "CREATED_TASK_1",
         "type": "_task",
-        "imageUrl": "https://drive.google.com/file/d/1vikhCjR6wTtMRS-dffC38afEjnD6lRA9/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1vikhCjR6wTtMRS-dffC38afEjnD6lRA9",
         "expGiven": 10
     },
     {
@@ -252,7 +252,7 @@
         "description": "Você criou cinco tarefas!",
         "requirement": "CREATED_TASK_5",
         "type": "_task",
-        "imageUrl": "https://drive.google.com/file/d/19bscAfeU8KOvRdRj0ZaUlkzFboS7iqA5/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=19bscAfeU8KOvRdRj0ZaUlkzFboS7iqA5",
         "expGiven": 20
     },
     {
@@ -260,7 +260,7 @@
         "description": "Você criou dez tarefas!",
         "requirement": "CREATED_TASK_10",
         "type": "_task",
-        "imageUrl": "https://drive.google.com/file/d/1WyGudnx5qNn3axrAzFctnVUHwaF-Q7GY/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1WyGudnx5qNn3axrAzFctnVUHwaF-Q7GY",
         "expGiven": 30
     },
     {
@@ -268,7 +268,7 @@
         "description": "Você criou vinte tarefas!",
         "requirement": "CREATED_TASK_20",
         "type": "_task",
-        "imageUrl": "https://drive.google.com/file/d/1SjeJbUnizebYyLntE-1u8Rw7IdTIDJ5J/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1SjeJbUnizebYyLntE-1u8Rw7IdTIDJ5J",
         "expGiven": 40
     },
     {
@@ -276,7 +276,7 @@
         "description": "Você criou trinta tarefas!",
         "requirement": "CREATED_TASK_30",
         "type": "_task",
-        "imageUrl": "https://drive.google.com/file/d/1UhBaUfvZwEmaWC-MCqVuAUkB0fmFsQuu/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1UhBaUfvZwEmaWC-MCqVuAUkB0fmFsQuu",
         "expGiven": 50
     },
     {
@@ -284,7 +284,7 @@
         "description": "Você atualizou sua primeira tarefa!",
         "requirement": "UPDATED_TASK_1",
         "type": "_task",
-        "imageUrl": "https://drive.google.com/file/d/16S_IMLWbGQYsNrdW-ZI9NY-Z-2o9Y8BF/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=16S_IMLWbGQYsNrdW-ZI9NY-Z-2o9Y8BF",
         "expGiven": 10
     },
     {
@@ -292,7 +292,7 @@
         "description": "Você atualizou cinco tarefas!",
         "requirement": "UPDATED_TASK_5",
         "type": "_task",
-        "imageUrl": "https://drive.google.com/file/d/1UH7mzFocW_3XaIGgAIZ8NDsha83tEAW-/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1UH7mzFocW_3XaIGgAIZ8NDsha83tEAW-",
         "expGiven": 20
     },
     {
@@ -300,7 +300,7 @@
         "description": "Você atualizou dez tarefas!",
         "requirement": "UPDATED_TASK_10",
         "type": "_task",
-        "imageUrl": "https://drive.google.com/file/d/1BIsJixXVG0WGU7C09N05tcwL3tWt27dc/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1BIsJixXVG0WGU7C09N05tcwL3tWt27dc",
         "expGiven": 30
     },
     {
@@ -308,7 +308,7 @@
         "description": "Você atualizou vinte tarefas!",
         "requirement": "UPDATED_TASK_20",
         "type": "_task",
-        "imageUrl": "https://drive.google.com/file/d/1dGQ6eh-deBkUYPLjkpnjcST1eJnLkhiv/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1dGQ6eh-deBkUYPLjkpnjcST1eJnLkhiv",
         "expGiven": 40
     },
     {
@@ -316,7 +316,7 @@
         "description": "Você atualizou trinta tarefas!",
         "requirement": "UPDATED_TASK_30",
         "type": "_task",
-        "imageUrl": "https://drive.google.com/file/d/1NbTFuckefaJHuitT44ErwTPALlaCAlJo/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1NbTFuckefaJHuitT44ErwTPALlaCAlJo",
         "expGiven": 50
     },
     {
@@ -324,7 +324,7 @@
         "description": "Você deletou sua primeira tarefa!",
         "requirement": "DELETED_TASK_1",
         "type": "_task",
-        "imageUrl": "https://drive.google.com/file/d/1bShAYe-dBR-vPM93I_pMCEugJnNky4ME/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1bShAYe-dBR-vPM93I_pMCEugJnNky4ME",
         "expGiven": 10
     },
     {
@@ -332,7 +332,7 @@
         "description": "Você deletou cinco tarefas!",
         "requirement": "DELETED_TASK_5",
         "type": "_task",
-        "imageUrl": "https://drive.google.com/file/d/1v5DMof8cSsqTaD-ILqse65hrdzrCQppC/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1v5DMof8cSsqTaD-ILqse65hrdzrCQppC",
         "expGiven": 20
     },
     {
@@ -340,7 +340,7 @@
         "description": "Você deletou dez tarefas!",
         "requirement": "DELETED_TASK_10",
         "type": "_task",
-        "imageUrl": "https://drive.google.com/file/d/1KMlnCHzW8rc4km8rWLZ1-jp16uoY_TKu/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1KMlnCHzW8rc4km8rWLZ1-jp16uoY_TKu",
         "expGiven": 30
     },
     {
@@ -348,7 +348,7 @@
         "description": "Você deletou vinte tarefas!",
         "requirement": "DELETED_TASK_20",
         "type": "_task",
-        "imageUrl": "https://drive.google.com/file/d/14lbhLS2B1geb0caSWgiz-fen0wSWcIQh/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=14lbhLS2B1geb0caSWgiz-fen0wSWcIQh",
         "expGiven": 40
     },
     {
@@ -356,7 +356,7 @@
         "description": "Você deletou trinta tarefas!",
         "requirement": "DELETED_TASK_30",
         "type": "_task",
-        "imageUrl": "https://drive.google.com/file/d/1KvxJo9s1qdxrube4cdnzYtc2zfkVweHT/view?usp=sharing",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1KvxJo9s1qdxrube4cdnzYtc2zfkVweHT",
         "expGiven": 50
     }
 ]
