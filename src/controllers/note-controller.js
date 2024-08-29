@@ -1,6 +1,7 @@
 const Note = require('../models/Note');
 const calculateLevel = require('../utils/calculateLevel');
 const checkNotesAchievements = require('../utils/checkNotesAchievements');
+const User = require('../models/User');
 
 const noteController = {
     getNotes: async (req, res) => {
@@ -17,17 +18,22 @@ const noteController = {
 
     create: async (req, res) => {
         const { title, content } = req.body;
-        const user = req.user;
+        const userId = req.user._id;
 
         if (!title || !content) return res.status(400).json({ error: 'Title and content are required' });
 
         try {
-            const note = new Note({ title, content, user: user._id });
+            const note = new Note({ title, content, user: userId });
             await note.save();
 
-            await user.updateOne({ $inc: { numberCreateNotes: 1 } });
-            await checkNotesAchievements.checkCreateNoteAchievements(user.numberCreateNotes + 1, user._id);
-            await calculateLevel(user._id);
+            const updatedUser = await User.findByIdAndUpdate(
+                userId,
+                { $inc: { experience: 10, numberCreateNotes: 1 } },
+                { new: true }
+            )
+
+            await checkNotesAchievements.checkCreateNoteAchievements(updatedUser.numberCreateNotes, userId);
+            await calculateLevel(userId);
 
             return res.status(201).json(note);
         } catch (err) {
@@ -38,7 +44,7 @@ const noteController = {
     update: async (req, res) => {
         const { title, content } = req.body;
         const { _id } = req.params;
-        const user = req.user;
+        const userId = req.user._id;
 
         try {
             const note = await Note.findById(_id);
@@ -53,9 +59,14 @@ const noteController = {
             
             await note.save();
 
-            await user.updateOne({ $inc: { numberUpdateNotes: 1 } });
-            await checkNotesAchievements.checkUpdateNoteAchievements(user.numberUpdateNotes + 1, user._id);
-            await calculateLevel(user._id);
+            const updatedUser = await User.findByIdAndUpdate(
+                userId,
+                { $inc: { experience: 10, numberUpdateNotes: 1 } },
+                { new: true }
+            )
+            
+            await checkNotesAchievements.checkUpdateNoteAchievements(updatedUser.numberUpdateNotes, userId);
+            await calculateLevel(userId);
 
             return res.status(200).json(note);
         } catch (err) {
@@ -65,7 +76,7 @@ const noteController = {
 
     delete: async (req, res) => {
         const { _id } = req.params;
-        const user = req.user;
+        const userId = req.user._id;
 
         try {
             const note = await Note.findById(_id);
@@ -76,9 +87,14 @@ const noteController = {
             
             await note.deleteOne({ _id: note._id });
 
-            await user.updateOne({ $inc: { numberDeleteNotes: 1 } });
-            await checkDeleteNoteAchievements(user.numberDeleteNotes + 1, user._id);
-            await calculateLevel(user._id);
+            const updatedUser = await User.findByIdAndUpdate(
+                userId,
+                { $inc: { experience: 10, numberDeleteNotes: 1 } },
+                { new: true }
+            )
+
+            await checkNotesAchievements.checkDeleteNoteAchievements(updatedUser.numberDeleteNotes, userId);
+            await calculateLevel(userId);
 
             return res.status(204).json();
         } catch (err) {

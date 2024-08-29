@@ -17,7 +17,7 @@ describe('User Controller', () => {
     })
 
     beforeEach(async () => {
-        await connection.dropDatabase();
+        await connection.dropCollection('users');
 
         const userDoc = connection.models.User(user);
         await userDoc.save();
@@ -28,7 +28,7 @@ describe('User Controller', () => {
     });
 
     afterAll(async () => {
-        await connection.dropDatabase();
+        await connection.dropCollection('users');
         await connection.close();
     })
 

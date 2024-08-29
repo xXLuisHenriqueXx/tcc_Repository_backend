@@ -20,7 +20,7 @@ describe('Task controller', () => {
     });
 
     beforeEach(async () => {
-        await connection.dropDatabase();
+        await connection.dropCollection('todos');
         
         const userInput = userFactory.build();
         user = new connection.models.User(userInput);
@@ -34,7 +34,7 @@ describe('Task controller', () => {
     });
 
     afterAll(async () => {
-        await connection.dropDatabase();
+        await connection.dropCollection('todos');
         await connection.close();
     });
 
@@ -50,6 +50,12 @@ describe('Task controller', () => {
         expect(response.body).toHaveProperty('_id');
         expect(response.body.title).toBe(taskInput.title);
         expect(response.body.done).toBe(taskInput.done);
+
+        const updatedUser = await connection.models.User.findById(user._id);
+
+        expect(updatedUser.numberCreateTasks).toBe(1);
+        expect(updatedUser.achievements.length).toBe(1);
+        expect(updatedUser.level).toBe(2);
 
         const updatedTodo = await connection.models.Todo.findById(todo._id);
         expect(updatedTodo.tasks.length).toBe(1);
@@ -71,6 +77,12 @@ describe('Task controller', () => {
         expect(response.status).toBe(200);
         expect(response.body.title).toBe(updatedTask.title);
         expect(response.body.done).toBe(taskInput.done);
+
+        const updatedUser = await connection.models.User.findById(user._id);
+
+        expect(updatedUser.numberUpdateTasks).toBe(1);
+        expect(updatedUser.achievements.length).toBe(1);
+        expect(updatedUser.level).toBe(2);
 
         const updatedTodo = await connection.models.Todo.findById(todo._id);
         expect(updatedTodo.tasks[0].title).toBe(updatedTask.title);
@@ -108,6 +120,12 @@ describe('Task controller', () => {
             .set('Authorization', `Bearer ${token}`);
 
         expect(response.status).toBe(204);
+
+        const updatedUser = await connection.models.User.findById(user._id);
+
+        expect(updatedUser.numberDeleteTasks).toBe(1);
+        expect(updatedUser.achievements.length).toBe(1);
+        expect(updatedUser.level).toBe(2);
 
         const updatedTodo = await connection.models.Todo.findById(todo._id);
         expect(updatedTodo.tasks.length).toBe(0);

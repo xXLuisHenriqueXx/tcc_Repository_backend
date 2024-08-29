@@ -6,7 +6,7 @@
     "dev": "node src/index.js",
     "start": "node src/index.js",
     "test": "jest --watch-all",
-    "seed": "node ./src/models/seeders/achievements.js"
+    "seed": "node ./src/models/seeders/achievementsSeed.js"
   },
   "keywords": [],
   "author": "",

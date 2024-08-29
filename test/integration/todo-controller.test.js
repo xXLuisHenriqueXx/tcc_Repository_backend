@@ -18,7 +18,7 @@ describe('Todo controller', () => {
     });
 
     beforeEach(async () => {
-        await connection.dropDatabase();
+        await connection.dropCollection('todos');
         const userInput = userFactory.build();
         user = new connection.models.User(userInput);
         await user.save();
@@ -27,7 +27,7 @@ describe('Todo controller', () => {
     });
 
     afterAll(async () => {
-        await connection.dropDatabase();
+        await connection.dropCollection('todos');
         await connection.close();
     });
  
@@ -42,6 +42,12 @@ describe('Todo controller', () => {
         expect(response.statusCode).toBe(201);
         expect(response.body.title).toBe(todoInput.title);
         expect(response.body.user).toBe(user._id.toString());
+
+        const updatedUser = await connection.models.User.findById(user._id);
+
+        expect(updatedUser.numberCreateTodos).toBe(1);
+        expect(updatedUser.achievements.length).toBe(1);
+        expect(updatedUser.level).toBe(2);
     });
 
     test('should get all todos for an authenticated user', async () => {
@@ -72,6 +78,12 @@ describe('Todo controller', () => {
 
         expect(response.statusCode).toBe(200);
         expect(response.body.title).toBe(newTitle);
+
+        const updatedUser = await connection.models.User.findById(user._id);
+
+        expect(updatedUser.numberUpdateTodos).toBe(1);
+        expect(updatedUser.achievements.length).toBe(1);
+        expect(updatedUser.level).toBe(2);
     });
 
     test('should delete a todo for an authenticated user', async () => {
@@ -87,5 +99,11 @@ describe('Todo controller', () => {
 
         expect(response.statusCode).toBe(204);
         expect(todoDeleted).toBeNull();
+
+        const updatedUser = await connection.models.User.findById(user._id);
+
+        expect(updatedUser.numberDeleteTodos).toBe(1);
+        expect(updatedUser.achievements.length).toBe(1);
+        expect(updatedUser.level).toBe(2);
     });
 })

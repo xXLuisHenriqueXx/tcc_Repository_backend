@@ -12,11 +12,11 @@ describe('Auth Controller', () => {
     })
 
     beforeEach(async () => {
-        await connection.dropDatabase();
+        await connection.dropCollection('users');
     });
 
     afterAll(async () => {
-        await connection.dropDatabase();
+        await connection.dropCollection('users');
         await connection.close();
     })
 

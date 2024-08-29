@@ -18,7 +18,7 @@ describe('Note Controller', () => {
     });
 
     beforeEach(async () => {
-        await connection.dropDatabase();
+        await connection.dropCollection('notes');
         
         const userInput = userFactory.build();
         user = new connection.models.User(userInput);
@@ -28,7 +28,7 @@ describe('Note Controller', () => {
     });
 
     afterAll(async () => {
-        await connection.dropDatabase();
+        await connection.dropCollection('notes');
         await connection.close();
     });
 
@@ -44,6 +44,12 @@ describe('Note Controller', () => {
         expect(response.body.title).toBe(noteInput.title);
         expect(response.body.content).toBe(noteInput.content);
         expect(response.body.user).toBe(user._id.toString());
+
+        const updatedUser = await connection.models.User.findById(user._id);
+
+        expect(updatedUser.numberCreateNotes).toBe(1);
+        expect(updatedUser.achievements.length).toBe(1);
+        expect(updatedUser.level).toBe(2);
     });
 
     test('should get all notes for an authenticated user', async () => {
@@ -80,6 +86,12 @@ describe('Note Controller', () => {
         expect(response.statusCode).toBe(200);
         expect(response.body.title).toBe(updatedNote.title);
         expect(response.body.content).toBe(updatedNote.content);
+
+        const updatedUser = await connection.models.User.findById(user._id);
+
+        expect(updatedUser.numberUpdateNotes).toBe(1);
+        expect(updatedUser.achievements.length).toBe(1);
+        expect(updatedUser.level).toBe(2);
     });
 
     test('should delete a note for an authenticated user', async () => {
@@ -95,5 +107,28 @@ describe('Note Controller', () => {
 
         expect(response.statusCode).toBe(204);
         expect(deletedNote).toBeNull();
+
+        const updatedUser = await connection.models.User.findById(user._id);
+
+        expect(updatedUser.numberDeleteNotes).toBe(1);
+        expect(updatedUser.achievements.length).toBe(1);
+        expect(updatedUser.level).toBe(2);
+    });
+
+    test('should create 5 notes, receive 2 achievements and level up', async () => {
+        const noteInput = noteFactory.build({ user: user._id });
+
+        for (let i = 0; i < 5; i++) {
+            await supertest(app)
+                .post('/note')
+                .set('Authorization', `Bearer ${token}`)
+                .send(noteInput);
+        }
+
+        const updatedUser = await connection.models.User.findById(user._id);
+
+        expect(updatedUser.numberCreateNotes).toBe(5);
+        expect(updatedUser.achievements.length).toBe(2);
+        expect(updatedUser.level).toBe(3);
     });
 });
