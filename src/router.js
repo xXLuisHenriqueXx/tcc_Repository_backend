@@ -2,6 +2,7 @@ const express = require('express');
 
 const authController = require('./controllers/auth-controller');
 const userController = require('./controllers/user-controller');
+const alarmController = require('./controllers/alarm-controller');
 const noteController = require('./controllers/note-controller');
 const todoController = require('./controllers/todo-controller');
 const taskController = require('./controllers/task-controller');
@@ -20,6 +21,13 @@ router.post('/register', authController.register);
 router.put('/profile', withAuth, userController.update);
 router.put('/profile/password', withAuth, userController.updatePassword);
 router.get('/user/:_id', withAuth, userController.show);
+
+// Alarm routes
+router.get('/alarm', withAuth, alarmController.getAlarms);
+router.post('/alarm', withAuth, alarmController.create);
+router.put('/alarm/:_id', withAuth, alarmController.update);
+router.delete('/alarm/:_id', withAuth, alarmController.delete);
+// router.put('/alarmstatus/:_id', withAuth, alarmController.updateStatus);
 
 // Note routes
 router.get('/note', withAuth, noteController.getNotes);

@@ -6,6 +6,7 @@
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
     "test": "jest --watch-all",
+    "test:alarms": "jest test/integration/alarm-controller.test.js",
     "seed": "node ./src/models/seeders/achievementsSeed.js"
   },
   "keywords": [],
