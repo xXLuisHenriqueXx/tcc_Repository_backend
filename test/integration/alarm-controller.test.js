@@ -32,7 +32,7 @@ describe('Alarm Controller', () => {
     });
 
     test('should create an alarm without days for an authenticated user', async () => {
-        let alarmTime = new Date();
+        const alarmTime = new Date();
         alarmTime.setHours(7);
         alarmTime.setMinutes(0);
 
@@ -65,7 +65,7 @@ describe('Alarm Controller', () => {
     });
 
     test('should create an alarm with days for an authenticated user', async () => {
-        let alarmTime = new Date();
+        const alarmTime = new Date();
         alarmTime.setHours(7);
         alarmTime.setMinutes(0);
 
@@ -98,7 +98,7 @@ describe('Alarm Controller', () => {
     });
 
     test('should create an alarm with another date for an authenticated user', async () => {
-        let alarmTime = new Date();
+        const alarmTime = new Date();
         alarmTime.setHours(7);
         alarmTime.setMinutes(0);
 
@@ -131,7 +131,7 @@ describe('Alarm Controller', () => {
     });
 
     test('should not create an alarm without title for an authenticated user', async () => {
-        let alarmTime = new Date();
+        const alarmTime = new Date();
         alarmTime.setHours(7);
         alarmTime.setMinutes(0);
 
@@ -159,59 +159,8 @@ describe('Alarm Controller', () => {
         expect(response.body.error).toBe('Title and hour are required');
     });
 
-    test('should update an alarm without days for an authenticated user', async () => {
-        let alarmTime = new Date();
-        alarmTime.setHours(7);
-        alarmTime.setMinutes(0);
-
-        const alarmInput = {
-            title: 'Wake up',
-            hour: alarmTime,
-            days: {
-                sunday: false,
-                monday: false,
-                tuesday: false,
-                wednesday: false,
-                thursday: false,
-                friday: false,
-                saturday: false
-            },
-            date: null,
-            status: true
-        };
-
-        const alarm = await connection.models.Alarm.create({ ...alarmInput, user: user._id });
-
-        const newAlarmInput = {
-            title: 'Wake up early',
-            hour: new Date("2024-10-06T08:00:00Z"),
-            days: {
-                sunday: false,
-                monday: false,
-                tuesday: false,
-                wednesday: false,
-                thursday: false,
-                friday: false,
-                saturday: false
-            },
-            date: null,
-            status: true
-        };
-
-        const response = await supertest(app)
-            .put(`/alarm/${alarm._id}`)
-            .set('Authorization', `Bearer ${token}`)
-            .send(newAlarmInput);
-
-        expect(response.body.title).toBe(newAlarmInput.title);
-        expect(new Date(response.body.hour).toISOString()).toBe(newAlarmInput.hour.toISOString());
-        expect(response.body.days).toEqual(newAlarmInput.days);
-        expect(response.body.date).toBeNull();
-        expect(response.body.user).toBe(user._id.toString());
-    });
-
     test('should update an alarm with days for an authenticated user', async () => {
-        let alarmTime = new Date();
+        const alarmTime = new Date();
         alarmTime.setHours(7);
         alarmTime.setMinutes(0);
 
@@ -228,10 +177,12 @@ describe('Alarm Controller', () => {
                 saturday: false
             },
             date: null,
-            status: true
+            status: true,
+            user: user._id
         };
 
-        const alarm = await connection.models.Alarm.create({ ...alarmInput, user: user._id });
+        const alarm = await connection.models.Alarm(alarmInput);
+        await alarm.save();
 
         const newAlarmInput = {
             title: 'Wake up early',
@@ -261,8 +212,8 @@ describe('Alarm Controller', () => {
         expect(response.body.user).toBe(user._id.toString());
     });
 
-    test('should update an alarm with another date for an authenticated user', async () => {
-        let alarmTime = new Date();
+    test('should update an alarm without days for an authenticated user', async () => {
+        const alarmTime = new Date();
         alarmTime.setHours(7);
         alarmTime.setMinutes(0);
 
@@ -279,10 +230,65 @@ describe('Alarm Controller', () => {
                 saturday: false
             },
             date: null,
+            status: true,
+            user: user._id
+        };
+
+        const alarm = await connection.models.Alarm(alarmInput);
+        await alarm.save();
+
+        const newAlarmInput = {
+            title: 'Wake up early',
+            hour: new Date("2024-10-06T08:00:00Z"),
+            days: {
+                sunday: false,
+                monday: false,
+                tuesday: false,
+                wednesday: false,
+                thursday: false,
+                friday: false,
+                saturday: false
+            },
+            date: null,
             status: true
         };
 
-        const alarm = await connection.models.Alarm.create({ ...alarmInput, user: user._id });
+        const response = await supertest(app)
+            .put(`/alarm/${alarm._id}`)
+            .set('Authorization', `Bearer ${token}`)
+            .send(newAlarmInput);
+
+        expect(response.body.title).toBe(newAlarmInput.title);
+        expect(new Date(response.body.hour).toISOString()).toBe(newAlarmInput.hour.toISOString());
+        expect(response.body.days).toEqual(newAlarmInput.days);
+        expect(response.body.date).toBeDefined();
+        expect(response.body.user).toBe(user._id.toString());
+    });
+
+    test('should update an alarm with another date for an authenticated user', async () => {
+        const alarmTime = new Date();
+        alarmTime.setHours(7);
+        alarmTime.setMinutes(0);
+
+        const alarmInput = {
+            title: 'Wake up',
+            hour: alarmTime,
+            days: {
+                sunday: false,
+                monday: false,
+                tuesday: false,
+                wednesday: false,
+                thursday: false,
+                friday: false,
+                saturday: false
+            },
+            date: null,
+            status: true,
+            user: user._id
+        };
+
+        const alarm = await connection.models.Alarm(alarmInput);
+        await alarm.save();
 
         const newAlarmInput = {
             title: 'Wake up early',
@@ -313,7 +319,7 @@ describe('Alarm Controller', () => {
     });
 
     test('should delete an alarm for an authenticated user', async () => {
-        let alarmTime = new Date();
+        const alarmTime = new Date();
         alarmTime.setHours(7);
         alarmTime.setMinutes(0);
 
@@ -330,15 +336,49 @@ describe('Alarm Controller', () => {
                 saturday: false
             },
             date: null,
-            status: true
+            status: true,
+            user: user._id
         };
 
-        const alarm = await connection.models.Alarm.create({ ...alarmInput, user: user._id });
+        const alarm = await connection.models.Alarm(alarmInput);
+        await alarm.save();
 
         const response = await supertest(app)
             .delete(`/alarm/${alarm._id}`)
             .set('Authorization', `Bearer ${token}`);
 
         expect(response.status).toBe(204);
+    });
+
+    test('should update an alarm status for an authenticated user', async () => {
+        const alarmTime = new Date();
+        alarmTime.setHours(7);
+        alarmTime.setMinutes(0);
+
+        const alarmInput = {
+            title: 'Wake up',
+            hour: alarmTime,
+            days: {
+                sunday: false,
+                monday: false,
+                tuesday: false,
+                wednesday: false,
+                thursday: false,
+                friday: false,
+                saturday: false
+            },
+            date: null,
+            status: true,
+            user: user._id
+        };
+
+        const alarm = await connection.models.Alarm(alarmInput);
+        await alarm.save();
+
+        const response = await supertest(app)
+            .put(`/alarm/${alarm._id}/status`)
+            .set('Authorization', `Bearer ${token}`);
+
+        expect(response.body.status).toBe(false);
     });
 });

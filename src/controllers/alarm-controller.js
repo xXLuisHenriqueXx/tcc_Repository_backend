@@ -64,11 +64,18 @@ const alarmController = {
             alarm.days = days || alarm.days;
 
             const daysSelected = Object.values(days).some(day => day);
-            if (!daysSelected && !date) {
-                alarm.date = date || calculateNextAlarmDate(hour);
-            } else {
+            if (daysSelected) {
                 alarm.date = null;
+                console.log('entrou 1')
+
+            } else if (!daysSelected && !date) {
+                alarm.date = date || calculateNextAlarmDate(hour);
+                console.log('entrou 2')
+            } else {
+                alarm.date = date || alarm.date;
+                console.log('entrou 3')
             }
+
 
             alarm.updatedAt = Date.now();
 
@@ -97,7 +104,7 @@ const alarmController = {
                 return res.status(404).json({ msg: 'Alarm not found' });
             }
 
-            await alarm.delete();
+            await alarm.deleteOne({ _id: alarm._id });
 
             const updatedUser = await User.findByIdAndUpdate(
                 userId,
@@ -105,7 +112,7 @@ const alarmController = {
                 { new: true }
             )
 
-            res.status(200).json({ msg: 'Alarm deleted' });
+            res.status(204).json({ msg: 'Alarm deleted' });
         } catch (err) {
             res.status(400).send({ error: err.message });
         }
@@ -113,7 +120,6 @@ const alarmController = {
 
     toggleAlarmStatus: async (req, res) => {
         const { _id } = req.params;
-        const userId = req.user._id;
 
         try {
             const alarm = await Alarm.findById(_id);
