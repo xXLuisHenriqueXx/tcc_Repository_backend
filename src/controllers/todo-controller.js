@@ -11,20 +11,23 @@ const todoController = {
       const todos = await Todo.find({ user: userId });
 
       res.status(200).json(todos);
-
     } catch (err) {
       res.status(400).send({ error: err.message });
     }
   },
 
   create: async (req, res) => {
-    const { title } = req.body;
+    const { title, tasks } = req.body;
     const userId = req.user._id;
 
     if (!title) return res.status(400).json({ error: 'Title are required' });
 
     try {
-      const todo = new Todo({ title, user: userId });
+      const todo = new Todo({ 
+        title, 
+        user: userId, 
+        tasks: tasks || [] 
+      });
       await todo.save();
 
       const updatedUser = await User.findByIdAndUpdate(
@@ -44,7 +47,7 @@ const todoController = {
   },
 
   update: async (req, res) => {
-    const { title } = req.body;
+    const { title, tasks } = req.body;
     const { _id } = req.params;
     const userId = req.user._id;
 
@@ -56,6 +59,7 @@ const todoController = {
       }
 
       todo.title = title || todo.title;
+      todo.tasks = tasks || todo.tasks;
       todo.updatedAt = Date.now();
 
       await todo.save();

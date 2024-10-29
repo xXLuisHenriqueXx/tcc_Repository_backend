@@ -5,11 +5,9 @@ const userController = require('./controllers/user-controller');
 const alarmController = require('./controllers/alarm-controller');
 const noteController = require('./controllers/note-controller');
 const todoController = require('./controllers/todo-controller');
-const taskController = require('./controllers/task-controller');
 const achievementController = require('./controllers/achievement-controller');
 
 const withAuth = require('./middlewares/auth');
-const loadTodo = require('./middlewares/loadTodo');
 
 const router = express.Router();
 
@@ -40,12 +38,6 @@ router.get('/todo', withAuth, todoController.getTodos);
 router.post('/todo', withAuth, todoController.create);
 router.put('/todo/:_id', withAuth, todoController.update);
 router.delete('/todo/:_id', withAuth, todoController.delete);
-
-// Task routes
-router.post('/todo/:_id/task', withAuth, loadTodo, taskController.add);
-router.put('/todo/:_id/task/:taskId', withAuth, loadTodo, taskController.update);
-router.put('/todo/:_id/task/:taskId/done', withAuth, loadTodo, taskController.updateDone);
-router.delete('/todo/:_id/task/:taskId', withAuth, loadTodo, taskController.delete);
 
 // Achievement routes
 router.get('/achievement', withAuth,achievementController.getAll);
