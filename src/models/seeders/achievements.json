@@ -1,5 +1,125 @@
 [
     {
+        "title": "Primeiro alarme criado",
+        "description": "Você criou seu primeiro alarme!",
+        "requirement": "CREATED_ALARM_1",
+        "type": "_alarm",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1vikhCjR6wTtMRS-dffC38afEjnD6lRA9",
+        "expGiven": 10
+    },
+    {
+        "title": "Cinco alarmes criados",
+        "description": "Você criou cinco alarmes!",
+        "requirement": "CREATED_ALARM_5",
+        "type": "_alarm",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=19bscAfeU8KOvRdRj0ZaUlkzFboS7iqA5",
+        "expGiven": 20
+    },
+    {
+        "title": "Dez alarmes criados",
+        "description": "Você criou dez alarmes!",
+        "requirement": "CREATED_ALARM_10",
+        "type": "_alarm",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1WyGudnx5qNn3axrAzFctnVUHwaF-Q7GY",
+        "expGiven": 30
+    },
+    {
+        "title": "Vinte alarmes criados",
+        "description": "Você criou vinte alarmes!",
+        "requirement": "CREATED_ALARM_20",
+        "type": "_alarm",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1SjeJbUnizebYyLntE-1u8Rw7IdTIDJ5J",
+        "expGiven": 40
+    },
+    {
+        "title": "Trinta alarmes criados",
+        "description": "Você criou trinta alarmes!",
+        "requirement": "CREATED_ALARM_30",
+        "type": "_alarm",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1UhBaUfvZwEmaWC-MCqVuAUkB0fmFsQuu",
+        "expGiven": 50
+    },
+    {
+        "title": "Primeiro alarme atualizado",
+        "description": "Você atualizou seu primeiro alarme!",
+        "requirement": "UPDATED_ALARM_1",
+        "type": "_alarm",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=16S_IMLWbGQYsNrdW-ZI9NY-Z-2o9Y8BF",
+        "expGiven": 10
+    },
+    {
+        "title": "Cinco alarmes atualizados",
+        "description": "Você atualizou cinco alarmes!",
+        "requirement": "UPDATED_ALARM_5",
+        "type": "_alarm",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1UH7mzFocW_3XaIGgAIZ8NDsha83tEAW-",
+        "expGiven": 20
+    },
+    {
+        "title": "Dez alarmes atualizados",
+        "description": "Você atualizou dez alarmes!",
+        "requirement": "UPDATED_ALARM_10",
+        "type": "_alarm",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1BIsJixXVG0WGU7C09N05tcwL3tWt27dc",
+        "expGiven": 30
+    },
+    {
+        "title": "Vinte alarmes atualizados",
+        "description": "Você atualizou vinte alarmes!",
+        "requirement": "UPDATED_ALARM_20",
+        "type": "_alarm",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1dGQ6eh-deBkUYPLjkpnjcST1eJnLkhiv",
+        "expGiven": 40
+    },
+    {
+        "title": "Trinta alarmes atualizados",
+        "description": "Você atualizou trinta alarmes!",
+        "requirement": "UPDATED_ALARM_30",
+        "type": "_alarm",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1NbTFuckefaJHuitT44ErwTPALlaCAlJo",
+        "expGiven": 50
+    },
+    {
+        "title": "Primeiro alarme deletado",
+        "description": "Você deletou seu primeiro alarme!",
+        "requirement": "DELETED_ALARM_1",
+        "type": "_alarm",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1bShAYe-dBR-vPM93I_pMCEugJnNky4ME",
+        "expGiven": 10
+    },
+    {
+        "title": "Cinco alarmes deletados",
+        "description": "Você deletou cinco alarmes!",
+        "requirement": "DELETED_ALARM_5",
+        "type": "_alarm",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1v5DMof8cSsqTaD-ILqse65hrdzrCQppC",
+        "expGiven": 20
+    },
+    {
+        "title": "Dez alarmes deletados",
+        "description": "Você deletou dez alarmes!",
+        "requirement": "DELETED_ALARM_10",
+        "type": "_alarm",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1KMlnCHzW8rc4km8rWLZ1-jp16uoY_TKu",
+        "expGiven": 30
+    },
+    {
+        "title": "Vinte alarmes deletados",
+        "description": "Você deletou vinte alarmes!",
+        "requirement": "DELETED_ALARM_20",
+        "type": "_alarm",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=14lbhLS2B1geb0caSWgiz-fen0wSWcIQh",
+        "expGiven": 40
+    },
+    {
+        "title": "Trinta alarmes deletados",
+        "description": "Você deletou trinta alarmes!",
+        "requirement": "DELETED_ALARM_30",
+        "type": "_alarm",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1KvxJo9s1qdxrube4cdnzYtc2zfkVweHT",
+        "expGiven": 50
+    },
+    {
         "title": "Primeira nota criada",
         "description": "Você criou sua primeira nota!",
         "requirement": "CREATED_NOTE_1",
@@ -236,126 +356,6 @@
         "description": "Você deletou trinta listas de tarefas!",
         "requirement": "DELETED_TODO_30",
         "type": "_todo",
-        "imageUrl": "https://drive.google.com/uc?export=view&id=1KvxJo9s1qdxrube4cdnzYtc2zfkVweHT",
-        "expGiven": 50
-    },
-    {
-        "title": "Primeira tarefa criada",
-        "description": "Você criou sua primeira tarefa!",
-        "requirement": "CREATED_TASK_1",
-        "type": "_task",
-        "imageUrl": "https://drive.google.com/uc?export=view&id=1vikhCjR6wTtMRS-dffC38afEjnD6lRA9",
-        "expGiven": 10
-    },
-    {
-        "title": "Cinco tarefas criadas",
-        "description": "Você criou cinco tarefas!",
-        "requirement": "CREATED_TASK_5",
-        "type": "_task",
-        "imageUrl": "https://drive.google.com/uc?export=view&id=19bscAfeU8KOvRdRj0ZaUlkzFboS7iqA5",
-        "expGiven": 20
-    },
-    {
-        "title": "Dez tarefas criadas",
-        "description": "Você criou dez tarefas!",
-        "requirement": "CREATED_TASK_10",
-        "type": "_task",
-        "imageUrl": "https://drive.google.com/uc?export=view&id=1WyGudnx5qNn3axrAzFctnVUHwaF-Q7GY",
-        "expGiven": 30
-    },
-    {
-        "title": "Vinte tarefas criadas",
-        "description": "Você criou vinte tarefas!",
-        "requirement": "CREATED_TASK_20",
-        "type": "_task",
-        "imageUrl": "https://drive.google.com/uc?export=view&id=1SjeJbUnizebYyLntE-1u8Rw7IdTIDJ5J",
-        "expGiven": 40
-    },
-    {
-        "title": "Trinta tarefas criadas",
-        "description": "Você criou trinta tarefas!",
-        "requirement": "CREATED_TASK_30",
-        "type": "_task",
-        "imageUrl": "https://drive.google.com/uc?export=view&id=1UhBaUfvZwEmaWC-MCqVuAUkB0fmFsQuu",
-        "expGiven": 50
-    },
-    {
-        "title": "Primeira tarefa atualizada",
-        "description": "Você atualizou sua primeira tarefa!",
-        "requirement": "UPDATED_TASK_1",
-        "type": "_task",
-        "imageUrl": "https://drive.google.com/uc?export=view&id=16S_IMLWbGQYsNrdW-ZI9NY-Z-2o9Y8BF",
-        "expGiven": 10
-    },
-    {
-        "title": "Cinco tarefas atualizadas",
-        "description": "Você atualizou cinco tarefas!",
-        "requirement": "UPDATED_TASK_5",
-        "type": "_task",
-        "imageUrl": "https://drive.google.com/uc?export=view&id=1UH7mzFocW_3XaIGgAIZ8NDsha83tEAW-",
-        "expGiven": 20
-    },
-    {
-        "title": "Dez tarefas atualizadas",
-        "description": "Você atualizou dez tarefas!",
-        "requirement": "UPDATED_TASK_10",
-        "type": "_task",
-        "imageUrl": "https://drive.google.com/uc?export=view&id=1BIsJixXVG0WGU7C09N05tcwL3tWt27dc",
-        "expGiven": 30
-    },
-    {
-        "title": "Vinte tarefas atualizadas",
-        "description": "Você atualizou vinte tarefas!",
-        "requirement": "UPDATED_TASK_20",
-        "type": "_task",
-        "imageUrl": "https://drive.google.com/uc?export=view&id=1dGQ6eh-deBkUYPLjkpnjcST1eJnLkhiv",
-        "expGiven": 40
-    },
-    {
-        "title": "Trinta tarefas atualizadas",
-        "description": "Você atualizou trinta tarefas!",
-        "requirement": "UPDATED_TASK_30",
-        "type": "_task",
-        "imageUrl": "https://drive.google.com/uc?export=view&id=1NbTFuckefaJHuitT44ErwTPALlaCAlJo",
-        "expGiven": 50
-    },
-    {
-        "title": "Primeira tarefa deletada",
-        "description": "Você deletou sua primeira tarefa!",
-        "requirement": "DELETED_TASK_1",
-        "type": "_task",
-        "imageUrl": "https://drive.google.com/uc?export=view&id=1bShAYe-dBR-vPM93I_pMCEugJnNky4ME",
-        "expGiven": 10
-    },
-    {
-        "title": "Cinco tarefas deletadas",
-        "description": "Você deletou cinco tarefas!",
-        "requirement": "DELETED_TASK_5",
-        "type": "_task",
-        "imageUrl": "https://drive.google.com/uc?export=view&id=1v5DMof8cSsqTaD-ILqse65hrdzrCQppC",
-        "expGiven": 20
-    },
-    {
-        "title": "Dez tarefas deletadas",
-        "description": "Você deletou dez tarefas!",
-        "requirement": "DELETED_TASK_10",
-        "type": "_task",
-        "imageUrl": "https://drive.google.com/uc?export=view&id=1KMlnCHzW8rc4km8rWLZ1-jp16uoY_TKu",
-        "expGiven": 30
-    },
-    {
-        "title": "Vinte tarefas deletadas",
-        "description": "Você deletou vinte tarefas!",
-        "requirement": "DELETED_TASK_20",
-        "type": "_task",
-        "imageUrl": "https://drive.google.com/uc?export=view&id=14lbhLS2B1geb0caSWgiz-fen0wSWcIQh",
-        "expGiven": 40
-    },
-    {
-        "title": "Trinta tarefas deletadas",
-        "description": "Você deletou trinta tarefas!",
-        "requirement": "DELETED_TASK_30",
-        "type": "_task",
         "imageUrl": "https://drive.google.com/uc?export=view&id=1KvxJo9s1qdxrube4cdnzYtc2zfkVweHT",
         "expGiven": 50
     }

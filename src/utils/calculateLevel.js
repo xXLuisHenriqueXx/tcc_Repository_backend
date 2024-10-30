@@ -205,22 +205,20 @@ const levelsRequirements = [
 
 const calculateLevel = async (userId) => {
     const user = await User.findById(userId);
-    let experience = user.experience;
+    
     let level = user.level;
+    let experience = user.experience;
+    let experienceToNextLevel = levelsRequirements.find(requirement => requirement.level === level + 1).experience;
 
-    for (let i = 0; i < levelsRequirements.length; i++) {
-        const requirement = levelsRequirements[i];
-
-        if (experience >= requirement.experience) {
-            level = requirement.level;
-            experience -= requirement.experience;
-        } else {
-            break
-        }
+    if (experience >= experienceToNextLevel) {
+        level++;
+        experience -= experienceToNextLevel;
+        experienceToNextLevel = levelsRequirements.find(requirement => requirement.level === level + 1).experience;
     }
 
     user.level = level;
     user.experience = experience;
+    user.experienceToNextLevel = experienceToNextLevel;
 
     await user.save();
 

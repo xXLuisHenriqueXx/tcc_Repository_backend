@@ -1,6 +1,8 @@
 const Alarm = require("../models/Alarm");
 const User = require("../models/User");
 const calculateNextAlarmDate = require('../helpers/calculateNextAlarmDate');
+const checkAlarmsAchievements = require("../utils/checkAlarmsAchievements");
+const calculateLevel = require("../utils/calculateLevel");
 
 const alarmController = {
     getAlarms: async (req, res) => {
@@ -41,6 +43,9 @@ const alarmController = {
                 { new: true }
             )
 
+            await checkAlarmsAchievements.checkCreateAlarmsAchievements(updatedUser.numberCreateAlarms, userId);
+            await calculateLevel(userId);
+
             res.status(201).json(alarm);
         } catch (err) {
             res.status(400).send({ error: err.message });
@@ -70,10 +75,9 @@ const alarmController = {
 
             } else if (!daysSelected && !date) {
                 alarm.date = date || calculateNextAlarmDate(hour);
-                console.log('entrou 2')
+
             } else {
                 alarm.date = date || alarm.date;
-                console.log('entrou 3')
             }
 
 
@@ -86,6 +90,9 @@ const alarmController = {
                 { $inc: { experience: 10, numberUpdateAlarms: 1 } },
                 { new: true }
             )
+
+            await checkAlarmsAchievements.checkUpdateAlarmsAchievements(updatedUser.numberUpdateAlarms, userId);
+            await calculateLevel(userId);
 
             res.status(200).json(alarm);
         } catch (err) {
@@ -111,6 +118,9 @@ const alarmController = {
                 { $inc: { experience: 10, numberDeleteAlarms: 1 } },
                 { new: true }
             )
+
+            await checkAlarmsAchievements.checkDeleteAlarmsAchievements(updatedUser.numberDeleteAlarms, userId);
+            await calculateLevel(userId);
 
             res.status(204).json({ msg: 'Alarm deleted' });
         } catch (err) {

@@ -9,6 +9,7 @@ const userSchema = new Schema({
     achievements: [{ type: Schema.Types.ObjectId, ref: "Achievement" }],
     level: { type: Number, default: 0 },
     experience: { type: Number, default: 0 },
+    experienceToNextLevel: { type: Number, default: 20 },
     numberCreateAlarms: { type: Number, default: 0 },
     numberCreateNotes: { type: Number, default: 0 },
     numberCreateTodos: { type: Number, default: 0 },

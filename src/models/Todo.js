@@ -3,7 +3,6 @@ const { Schema, model, default: mongoose } = require("mongoose");
 const todoSchema = new Schema({
     title: { type: String, required: true },
     tasks: [{
-        _id: { type: mongoose.Schema.Types.ObjectId, auto: true },
         title: { type: String, required: true },
         done: { type: Boolean, default: false }
     }],
