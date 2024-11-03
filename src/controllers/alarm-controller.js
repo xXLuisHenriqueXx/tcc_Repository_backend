@@ -145,6 +145,56 @@ const alarmController = {
         } catch (err) {
             res.status(400).send({ error: err.message });
         }
+    },
+
+    nextAlarm: async (req, res) => {
+        const userId = req.user._id;
+
+        try {
+            const alarms = await Alarm.find({ user: userId });
+
+            if (alarms.length === 0) {
+                return res.status(404).json({ msg: 'No alarms found' });
+            }
+
+            let nextAlarm = null;
+            let nextAlarmDate = null;
+
+            alarms.forEach(alarm => {
+                let alarmDate = null;
+
+                if (alarm.date) {
+                    alarmDate = new Date(alarm.date);
+                } else {
+                    const now = new Date();
+                    const hour = new Date(alarm.hour).getHours();
+                    const minute = new Date(alarm.hour).getMinutes();
+
+                    for (let i = 0; i < 7; i++) {
+                        const day = (now.getDay() + i) % 7;
+                        if (alarm.days[Object.keys(alarm.days)[day]]) {
+                            alarmDate = new Date(now);
+                            alarmDate.setDate(now.getDate() + i);
+                            alarmDate.setHours(hour, minute, 0, 0);
+                            break;
+                        }
+                    }
+                }
+
+                if (alarmDate && (!nextAlarmDate || alarmDate < nextAlarmDate)) {
+                    nextAlarmDate = alarmDate;
+                    nextAlarm = alarm;
+                }
+            });
+
+            if (!nextAlarm) {
+                return res.status(404).json({ msg: 'No upcoming alarms found' });
+            }
+
+            res.status(200).json({ nextAlarm, nextAlarmDate });
+        } catch (err) {
+            res.status(400).send({ error: err.message });
+        }
     }
 }
 
