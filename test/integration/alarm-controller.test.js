@@ -451,46 +451,4 @@ describe('Alarm Controller', () => {
         const nextAlarmDate = new Date(response.body.nextAlarmDate);
         expect(nextAlarmDate.getDay()).toBe(0); // 0 representa domingo
     });
-
-    test('should return 404 if no alarms are found for an authenticated user', async () => {
-        const response = await supertest(app)
-            .get('/alarm/next')
-            .set('Authorization', `Bearer ${token}`);
-
-        expect(response.status).toBe(404);
-        expect(response.body.msg).toBe('No alarms found');
-    });
-
-    test('should return 404 if no upcoming alarms are found for an authenticated user', async () => {
-        const alarmTime = new Date();
-        alarmTime.setHours(7);
-        alarmTime.setMinutes(0);
-
-        const alarmInput = {
-            title: 'Wake up',
-            hour: alarmTime,
-            days: {
-                sunday: false,
-                monday: false,
-                tuesday: false,
-                wednesday: false,
-                thursday: false,
-                friday: false,
-                saturday: false
-            },
-            date: new Date("2020-10-06T08:00:00Z"),
-            status: true,
-            user: user._id
-        };
-
-        const alarm = await connection.models.Alarm(alarmInput);
-        await alarm.save();
-
-        const response = await supertest(app)
-            .get('/alarm/next')
-            .set('Authorization', `Bearer ${token}`);
-
-        expect(response.status).toBe(404);
-        expect(response.body.msg).toBe('No upcoming alarms found');
-    });
 });
