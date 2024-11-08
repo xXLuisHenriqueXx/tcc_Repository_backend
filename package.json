@@ -9,7 +9,7 @@
     "test:alarm": "jest test/integration/alarm-controller.test.js",
     "test:auth": "jest test/integration/auth-controller.test.js",
     "test:level": "jest test/integration/calculate-level.test.js",
-    "test:notes": "jest test/integration/notes-controller.test.js",
+    "test:note": "jest test/integration/note-controller.test.js",
     "test:todo": "jest test/integration/todo-controller.test.js",
     "test:user": "jest test/integration/user-controller.test.js",
     "seed": "node ./src/models/seeders/achievementsSeed.js"

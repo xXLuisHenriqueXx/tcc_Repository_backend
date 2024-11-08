@@ -3,6 +3,8 @@ const User = require("../models/User");
 const calculateNextAlarmDate = require('../helpers/calculateNextAlarmDate');
 const checkAlarmsAchievements = require("../utils/checkAlarmsAchievements");
 const calculateLevel = require("../utils/calculateLevel");
+const calculateNextAlarm = require("../utils/calculateNextAlarm");
+
 
 const alarmController = {
     getAlarms: async (req, res) => {
@@ -11,7 +13,9 @@ const alarmController = {
         try {
             const alarms = await Alarm.find({ user: userId });
 
-            res.status(200).json(alarms);
+            const nextAlarmId = await calculateNextAlarm(userId);
+        
+            res.status(200).json({ alarms, nextAlarmId });
 
         } catch (err) {
             res.status(400).send({ error: err.message });
@@ -46,7 +50,9 @@ const alarmController = {
             await checkAlarmsAchievements.checkCreateAlarmsAchievements(updatedUser.numberCreateAlarms, userId);
             await calculateLevel(userId);
 
-            res.status(201).json(alarm);
+            const nextAlarmId = await calculateNextAlarm(userId);
+
+            res.status(201).json({ alarm, nextAlarmId });
         } catch (err) {
             res.status(400).send({ error: err.message });
         }
@@ -71,7 +77,6 @@ const alarmController = {
             const daysSelected = Object.values(days).some(day => day);
             if (daysSelected) {
                 alarm.date = null;
-                console.log('entrou 1')
 
             } else if (!daysSelected && !date) {
                 alarm.date = date || calculateNextAlarmDate(hour);
@@ -79,7 +84,6 @@ const alarmController = {
             } else {
                 alarm.date = date || alarm.date;
             }
-
 
             alarm.updatedAt = Date.now();
 
@@ -94,7 +98,9 @@ const alarmController = {
             await checkAlarmsAchievements.checkUpdateAlarmsAchievements(updatedUser.numberUpdateAlarms, userId);
             await calculateLevel(userId);
 
-            res.status(200).json(alarm);
+            const nextAlarmId = await calculateNextAlarm(userId);
+
+            res.status(200).json({ alarm, nextAlarmId });
         } catch (err) {
             res.status(400).send({ error: err.message });
         }
@@ -122,7 +128,9 @@ const alarmController = {
             await checkAlarmsAchievements.checkDeleteAlarmsAchievements(updatedUser.numberDeleteAlarms, userId);
             await calculateLevel(userId);
 
-            res.status(204).json({ msg: 'Alarm deleted' });
+            const nextAlarmId = await calculateNextAlarm(userId);
+
+            res.status(204).json({ msg: 'Alarm deleted', nextAlarmId });
         } catch (err) {
             res.status(400).send({ error: err.message });
         }
@@ -130,6 +138,7 @@ const alarmController = {
 
     toggleAlarmStatus: async (req, res) => {
         const { _id } = req.params;
+        const userId = req.user._id;
 
         try {
             const alarm = await Alarm.findById(_id);
@@ -141,57 +150,9 @@ const alarmController = {
             alarm.status = !alarm.status;
             await alarm.save();
 
-            res.status(200).json(alarm);
-        } catch (err) {
-            res.status(400).send({ error: err.message });
-        }
-    },
+            const nextAlarmId = await calculateNextAlarm(userId);
 
-    nextAlarm: async (req, res) => {
-        const userId = req.user._id;
-
-        try {
-            const alarms = await Alarm.find({ user: userId });
-
-            if (alarms.length === 0) {
-                return res.status(404).json({ msg: 'No alarms found' });
-            }
-
-            let nextAlarm = null;
-            let nextAlarmDate = null;
-
-            alarms.forEach(alarm => {
-                let alarmDate = null;
-
-                if (alarm.date) {
-                    alarmDate = new Date(alarm.date);
-                } else {
-                    const now = new Date();
-                    const hour = new Date(alarm.hour).getHours();
-                    const minute = new Date(alarm.hour).getMinutes();
-
-                    for (let i = 0; i < 7; i++) {
-                        const day = (now.getDay() + i) % 7;
-                        if (alarm.days[Object.keys(alarm.days)[day]]) {
-                            alarmDate = new Date(now);
-                            alarmDate.setDate(now.getDate() + i);
-                            alarmDate.setHours(hour, minute, 0, 0);
-                            break;
-                        }
-                    }
-                }
-
-                if (alarmDate && (!nextAlarmDate || alarmDate < nextAlarmDate)) {
-                    nextAlarmDate = alarmDate;
-                    nextAlarm = alarm;
-                }
-            });
-
-            if (!nextAlarm) {
-                return res.status(404).json({ msg: 'No upcoming alarms found' });
-            }
-
-            res.status(200).json({ nextAlarm, nextAlarmDate });
+            res.status(200).json({ alarm, nextAlarmId });
         } catch (err) {
             res.status(400).send({ error: err.message });
         }

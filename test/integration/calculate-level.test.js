@@ -42,8 +42,6 @@ describe('Calcuate level', () => {
 
         const updatedUser = await connection.models.User.findById(user._id);
 
-        console.log(updatedUser);
-
         expect(updatedUser.level).toBe(5);
     });
 });

@@ -26,7 +26,6 @@ router.post('/alarm', withAuth, alarmController.create);
 router.put('/alarm/:_id', withAuth, alarmController.update);
 router.delete('/alarm/:_id', withAuth, alarmController.delete);
 router.put('/alarm/:_id/status', withAuth, alarmController.toggleAlarmStatus);
-router.get('/alarm/next', withAuth, alarmController.nextAlarm);
 
 // Note routes
 router.get('/note', withAuth, noteController.getNotes);

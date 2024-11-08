@@ -18,7 +18,7 @@ describe('Alarm Controller', () => {
 
     beforeEach(async () => {
         await connection.dropCollection('alarms');
-
+        
         const userInput = userFactory.build();
         user = new connection.models.User(userInput);
         await user.save();
@@ -57,11 +57,13 @@ describe('Alarm Controller', () => {
             .set('Authorization', `Bearer ${token}`)
             .send(alarmInput);
 
-        expect(response.body.title).toBe(alarmInput.title);
-        expect(new Date(response.body.hour).toISOString()).toBe(alarmInput.hour.toISOString());
-        expect(response.body.days).toEqual(alarmInput.days);
-        expect(response.body.date).toBeDefined();
-        expect(response.body.user).toBe(user._id.toString());
+        expect(response.status).toBe(201);
+        expect(response.body.alarm.title).toBe(alarmInput.title);
+        expect(new Date(response.body.alarm.hour).toISOString()).toBe(alarmInput.hour.toISOString());
+        expect(response.body.alarm.days).toEqual(alarmInput.days);
+        expect(response.body.alarm.date).toBeDefined();
+        expect(response.body.alarm.user).toBe(user._id.toString());
+        expect(response.body.nextAlarmId).toBeDefined();
     });
 
     test('should create an alarm with days for an authenticated user', async () => {
@@ -90,11 +92,13 @@ describe('Alarm Controller', () => {
             .set('Authorization', `Bearer ${token}`)
             .send(alarmInput);
 
-        expect(response.body.title).toBe(alarmInput.title);
-        expect(new Date(response.body.hour).toISOString()).toBe(alarmInput.hour.toISOString());
-        expect(response.body.days).toEqual(alarmInput.days);
-        expect(response.body.date).toBeNull();
-        expect(response.body.user).toBe(user._id.toString());
+        expect(response.status).toBe(201);
+        expect(response.body.alarm.title).toBe(alarmInput.title);
+        expect(new Date(response.body.alarm.hour).toISOString()).toBe(alarmInput.hour.toISOString());
+        expect(response.body.alarm.days).toEqual(alarmInput.days);
+        expect(response.body.alarm.date).toBeNull();
+        expect(response.body.alarm.user).toBe(user._id.toString());
+        expect(response.body.nextAlarmId).toBeDefined();
     });
 
     test('should create an alarm with another date for an authenticated user', async () => {
@@ -123,11 +127,13 @@ describe('Alarm Controller', () => {
             .set('Authorization', `Bearer ${token}`)
             .send(alarmInput);
 
-        expect(response.body.title).toBe(alarmInput.title);
-        expect(new Date(response.body.hour).toISOString()).toBe(alarmInput.hour.toISOString());
-        expect(response.body.days).toEqual(alarmInput.days);
-        expect(response.body.date).toBeDefined();
-        expect(response.body.user).toBe(user._id.toString());
+        expect(response.status).toBe(201);
+        expect(response.body.alarm.title).toBe(alarmInput.title);
+        expect(new Date(response.body.alarm.hour).toISOString()).toBe(alarmInput.hour.toISOString());
+        expect(response.body.alarm.days).toEqual(alarmInput.days);
+        expect(response.body.alarm.date).toBeDefined();
+        expect(response.body.alarm.user).toBe(user._id.toString());
+        expect(response.body.nextAlarmId).toBeDefined();
     });
 
     test('should not create an alarm without title for an authenticated user', async () => {
@@ -205,11 +211,13 @@ describe('Alarm Controller', () => {
             .set('Authorization', `Bearer ${token}`)
             .send(newAlarmInput);
 
-        expect(response.body.title).toBe(newAlarmInput.title);
-        expect(new Date(response.body.hour).toISOString()).toBe(newAlarmInput.hour.toISOString());
-        expect(response.body.days).toEqual(newAlarmInput.days);
-        expect(response.body.date).toBeNull();
-        expect(response.body.user).toBe(user._id.toString());
+        expect(response.status).toBe(200);
+        expect(response.body.alarm.title).toBe(newAlarmInput.title);
+        expect(new Date(response.body.alarm.hour).toISOString()).toBe(newAlarmInput.hour.toISOString());
+        expect(response.body.alarm.days).toEqual(newAlarmInput.days);
+        expect(response.body.alarm.date).toBeNull();
+        expect(response.body.alarm.user).toBe(user._id.toString());
+        expect(response.body.nextAlarmId).toBeDefined();
     });
 
     test('should update an alarm without days for an authenticated user', async () => {
@@ -258,11 +266,13 @@ describe('Alarm Controller', () => {
             .set('Authorization', `Bearer ${token}`)
             .send(newAlarmInput);
 
-        expect(response.body.title).toBe(newAlarmInput.title);
-        expect(new Date(response.body.hour).toISOString()).toBe(newAlarmInput.hour.toISOString());
-        expect(response.body.days).toEqual(newAlarmInput.days);
-        expect(response.body.date).toBeDefined();
-        expect(response.body.user).toBe(user._id.toString());
+        expect(response.status).toBe(200);
+        expect(response.body.alarm.title).toBe(newAlarmInput.title);
+        expect(new Date(response.body.alarm.hour).toISOString()).toBe(newAlarmInput.hour.toISOString());
+        expect(response.body.alarm.days).toEqual(newAlarmInput.days);
+        expect(response.body.alarm.date).toBeDefined();
+        expect(response.body.alarm.user).toBe(user._id.toString());
+        expect(response.body.nextAlarmId).toBeDefined();
     });
 
     test('should update an alarm with another date for an authenticated user', async () => {
@@ -311,11 +321,13 @@ describe('Alarm Controller', () => {
             .set('Authorization', `Bearer ${token}`)
             .send(newAlarmInput);
 
-        expect(response.body.title).toBe(newAlarmInput.title);
-        expect(new Date(response.body.hour).toISOString()).toBe(newAlarmInput.hour.toISOString());
-        expect(response.body.days).toEqual(newAlarmInput.days);
-        expect(response.body.date).toBeDefined();
-        expect(response.body.user).toBe(user._id.toString());
+        expect(response.status).toBe(200);
+        expect(response.body.alarm.title).toBe(newAlarmInput.title);
+        expect(new Date(response.body.alarm.hour).toISOString()).toBe(newAlarmInput.hour.toISOString());
+        expect(response.body.alarm.days).toEqual(newAlarmInput.days);
+        expect(response.body.alarm.date).toBeDefined();
+        expect(response.body.alarm.user).toBe(user._id.toString());
+        expect(response.body.nextAlarmId).toBeDefined();
     });
 
     test('should delete an alarm for an authenticated user', async () => {
@@ -348,6 +360,7 @@ describe('Alarm Controller', () => {
             .set('Authorization', `Bearer ${token}`);
 
         expect(response.status).toBe(204);
+        expect(response.body).toEqual({});
     });
 
     test('should update an alarm status for an authenticated user', async () => {
@@ -379,10 +392,12 @@ describe('Alarm Controller', () => {
             .put(`/alarm/${alarm._id}/status`)
             .set('Authorization', `Bearer ${token}`);
 
-        expect(response.body.status).toBe(false);
+        expect(response.status).toBe(200);
+        expect(response.body.alarm.status).toBe(false);
+        expect(response.body.nextAlarmId).toBeDefined();
     });
 
-    test('should return the next alarm with a specific date for an authenticated user', async () => {
+    test('should return the next alarm id for an authenticated user', async () => {
         const alarmTime = new Date();
         alarmTime.setHours(7);
         alarmTime.setMinutes(0);
@@ -399,40 +414,6 @@ describe('Alarm Controller', () => {
                 friday: false,
                 saturday: false
             },
-            date: new Date("2024-10-06T08:00:00Z"),
-            status: true,
-            user: user._id
-        };
-
-        const alarm = await connection.models.Alarm(alarmInput);
-        await alarm.save();
-
-        const response = await supertest(app)
-            .get('/alarm/next')
-            .set('Authorization', `Bearer ${token}`);
-
-        expect(response.status).toBe(200);
-        expect(response.body.nextAlarm.title).toBe(alarmInput.title);
-        expect(new Date(response.body.nextAlarmDate).toISOString()).toBe(alarmInput.date.toISOString());
-    });
-
-    test('should return the next alarm with recurring days for an authenticated user', async () => {
-        const alarmTime = new Date();
-        alarmTime.setHours(7);
-        alarmTime.setMinutes(0);
-
-        const alarmInput = {
-            title: 'Wake up',
-            hour: alarmTime,
-            days: {
-                sunday: true,
-                monday: false,
-                tuesday: false,
-                wednesday: false,
-                thursday: false,
-                friday: false,
-                saturday: false
-            },
             date: null,
             status: true,
             user: user._id
@@ -442,13 +423,10 @@ describe('Alarm Controller', () => {
         await alarm.save();
 
         const response = await supertest(app)
-            .get('/alarm/next')
+            .get('/alarm')
             .set('Authorization', `Bearer ${token}`);
 
         expect(response.status).toBe(200);
-        expect(response.body.nextAlarm.title).toBe(alarmInput.title);
-        // Verifica se a próxima data do alarme é um domingo
-        const nextAlarmDate = new Date(response.body.nextAlarmDate);
-        expect(nextAlarmDate.getDay()).toBe(0); // 0 representa domingo
+        expect(response.body.nextAlarmId).toBe(alarm._id.toString());
     });
 });
