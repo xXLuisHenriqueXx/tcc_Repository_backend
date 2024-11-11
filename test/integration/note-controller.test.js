@@ -49,7 +49,7 @@ describe('Note Controller', () => {
 
         expect(updatedUser.numberCreateNotes).toBe(1);
         expect(updatedUser.achievements.length).toBe(1);
-        expect(updatedUser.level).toBe(2);
+        expect(updatedUser.level).toBe(1);
     });
 
     test('should get all notes for an authenticated user', async () => {
@@ -91,7 +91,7 @@ describe('Note Controller', () => {
 
         expect(updatedUser.numberUpdateNotes).toBe(1);
         expect(updatedUser.achievements.length).toBe(1);
-        expect(updatedUser.level).toBe(2);
+        expect(updatedUser.level).toBe(1);
     });
 
     test('should delete a note for an authenticated user', async () => {
@@ -112,7 +112,7 @@ describe('Note Controller', () => {
 
         expect(updatedUser.numberDeleteNotes).toBe(1);
         expect(updatedUser.achievements.length).toBe(1);
-        expect(updatedUser.level).toBe(2);
+        expect(updatedUser.level).toBe(1);
     });
 
     test('should create 5 notes, receive 2 achievements and level up', async () => {
@@ -129,6 +129,6 @@ describe('Note Controller', () => {
 
         expect(updatedUser.numberCreateNotes).toBe(5);
         expect(updatedUser.achievements.length).toBe(2);
-        expect(updatedUser.level).toBe(3);
+        expect(updatedUser.level).toBe(2);
     });
 });

@@ -19,6 +19,7 @@ describe('Todo controller', () => {
 
     beforeEach(async () => {
         await connection.dropCollection('todos');
+
         const userInput = userFactory.build();
         user = new connection.models.User(userInput);
         await user.save();
@@ -123,6 +124,7 @@ describe('Todo controller', () => {
 
         const updatedUser = await connection.models.User.findById(user._id);
 
+        expect(updatedUser.numberUpdateTodos).toBe(1);
         expect(updatedUser.achievements.length).toBe(1);
         expect(updatedUser.level).toBe(1);
     });

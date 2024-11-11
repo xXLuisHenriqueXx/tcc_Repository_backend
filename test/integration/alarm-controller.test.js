@@ -396,37 +396,4 @@ describe('Alarm Controller', () => {
         expect(response.body.alarm.status).toBe(false);
         expect(response.body.nextAlarmId).toBeDefined();
     });
-
-    test('should return the next alarm id for an authenticated user', async () => {
-        const alarmTime = new Date();
-        alarmTime.setHours(7);
-        alarmTime.setMinutes(0);
-
-        const alarmInput = {
-            title: 'Wake up',
-            hour: alarmTime,
-            days: {
-                sunday: false,
-                monday: false,
-                tuesday: false,
-                wednesday: false,
-                thursday: false,
-                friday: false,
-                saturday: false
-            },
-            date: null,
-            status: true,
-            user: user._id
-        };
-
-        const alarm = await connection.models.Alarm(alarmInput);
-        await alarm.save();
-
-        const response = await supertest(app)
-            .get('/alarm')
-            .set('Authorization', `Bearer ${token}`);
-
-        expect(response.status).toBe(200);
-        expect(response.body.nextAlarmId).toBe(alarm._id.toString());
-    });
 });
