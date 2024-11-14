@@ -4,7 +4,7 @@ const calculateNextAlarmDate = require('../helpers/calculateNextAlarmDate');
 const checkAlarmsAchievements = require("../utils/checkAlarmsAchievements");
 const calculateLevel = require("../utils/calculateLevel");
 const calculateNextAlarm = require("../utils/calculateNextAlarm");
-
+const calculateAlarmDay = require("../utils/calculateAlarmDay");
 
 const alarmController = {
     getAlarms: async (req, res) => {
@@ -154,6 +154,31 @@ const alarmController = {
 
             res.status(200).json({ alarm, nextAlarmId });
         } catch (err) {
+            res.status(400).send({ error: err.message });
+        }
+    },
+
+    getScheduleNotificationData: async (req, res) => {
+        const { _id } = req.params;
+        const userId = req.user._id;
+
+        try {
+            const alarm = await Alarm.findById(_id);
+
+            if (!alarm) {
+                return res.status(404).json({ msg: 'Alarm not found' });
+            }
+
+            const nextAlarmDate = await calculateAlarmDay(alarm);
+
+            const notificationData = {
+                title: alarm.title,
+                body: `Seu alarme ${alarm.title} está chamando!`,
+                date: nextAlarmDate,
+            };
+
+            res.status(200).json(notificationData);
+        } catch (error) {
             res.status(400).send({ error: err.message });
         }
     }

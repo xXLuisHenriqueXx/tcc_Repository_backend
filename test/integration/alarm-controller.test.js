@@ -396,4 +396,72 @@ describe('Alarm Controller', () => {
         expect(response.body.alarm.status).toBe(false);
         expect(response.body.nextAlarmId).toBeDefined();
     });
+
+    expect('should get the schedule notification data with a date for an authenticated user', async () => {
+        const alarmTime = new Date();
+        alarmTime.setHours(7);
+        alarmTime.setMinutes(0);
+
+        const alarmInput = {
+            title: 'Wake up',
+            hour: alarmTime,
+            days: {
+                sunday: false,
+                monday: false,
+                tuesday: false,
+                wednesday: false,
+                thursday: false,
+                friday: false,
+                saturday: false
+            },
+            date: new Date("2024-10-06T08:00:00Z"),
+            status: true,
+            user: user._id
+        };
+
+        const alarm = await connection.models.Alarm(alarmInput);
+        await alarm.save();
+
+        const response = await supertest(app)
+            .get(`/alarm/${alarm._id}/notification`)
+            .set('Authorization', `Bearer ${token}`);
+
+        expect(response.status).toBe(200);
+        expect(response.body.notification.title).toBe(alarm.title);
+        expect(new Date(response.body.notification.date).toISOString()).toBe(alarm.date.toISOString());
+    });
+
+    expect('should get the schedule notification data with days for an authenticated user', async () => {
+        const alarmTime = new Date();
+        alarmTime.setHours(7);
+        alarmTime.setMinutes(0);
+
+        const alarmInput = {
+            title: 'Wake up',
+            hour: alarmTime,
+            days: {
+                sunday: false,
+                monday: false,
+                tuesday: false,
+                wednesday: false,
+                thursday: false,
+                friday: false,
+                saturday: true
+            },
+            date: null,
+            status: true,
+            user: user._id
+        };
+
+        const alarm = await connection.models.Alarm(alarmInput);
+        await alarm.save();
+
+        const response = await supertest(app)
+            .get(`/alarm/${alarm._id}/notification`)
+            .set('Authorization', `Bearer ${token}`);
+
+        expect(response.status).toBe(200);
+        expect(response.body.notification.title).toBe(alarm.title);
+        expect(new Date(response.body.notification.date).toISOString()).toBe(alarm.hour.toISOString());
+    });
 });
