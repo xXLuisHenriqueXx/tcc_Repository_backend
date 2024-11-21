@@ -6,11 +6,14 @@ const userFactory = Factory.define(() => {
     const firstName = faker.name.firstName();
     const lastName = faker.name.lastName();
 
+    const password = faker.internet.password(8);
+
     return {
         _id: new mongoose.Types.ObjectId(),
         name: firstName + " " + lastName,
         email: faker.internet.email(firstName),
-        password: faker.internet.password(6),
+        password: password,
+        confirmPassword: password,
         createdAt: new Date(),
         updatedAt: new Date()
     }

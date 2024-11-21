@@ -32,25 +32,8 @@ describe('Auth Controller', () => {
         expect(createdUser.password).not.toBe(userInput.password);
     })
 
-    test('should register a user with only email and password', async () => {
-        const userInput = {
-            email: "user@email.com",
-            password: "123456"
-        }
-
-        const response = await supertest(app).post('/register').send(userInput);
-        const createdUser = await connection.models.User.findOne({ email: userInput.email });
-
-        expect(response.statusCode).toBe(201);
-        expect(createdUser._id).toBeDefined();
-        expect(createdUser.email).toBe(userInput.email);
-    });
-
     test('should return a login token when registering a user', async () => {
-        const userInput = {
-            email: "user@email.com",
-            password: "123456"
-        }
+        const userInput = userFactory.build();
 
         const response = await supertest(app).post('/register').send(userInput);
 
@@ -105,7 +88,7 @@ describe('Auth Controller', () => {
 
         const { statusCode, body } = await supertest(app).post('/login').send({ email: 'test', password: userInput.password });
 
-        expect(statusCode).toBe(401);
+        expect(statusCode).toBe(400);
         expect(body.token).toBeUndefined();
     });
 

@@ -1,12 +1,19 @@
 require('dotenv').config();
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const { registerSchema, loginSchema } = require('../schemas/authValidationSchemas');
 const jwtSecret = process.env.JWT_KEY;
 
 module.exports = {
     register: async (req, res) => {
         try {
-            const { name, email, password } = req.body;
+            const validationResult = registerSchema.safeParse(req.body);
+
+            if (!validationResult.success) {
+                return res.status(400).json({ error: validationResult.error.errors });
+            }
+            
+            const { name, email, password } = validationResult.data;
             const user = new User({ name, email, password });
             await user.save();
 
@@ -35,17 +42,23 @@ module.exports = {
                 token
             });
         } catch (err) {
-            return res.status(400).json({ error: err.message });
+            return res.status(500).json({ error: err.message });
         }
     },
 
     login: async (req, res) => {
         try {
-            const { email, password } = req.body;
+            const validationResult = loginSchema.safeParse(req.body);
+
+            if (!validationResult.success) {
+                return res.status(400).json({ error: validationResult.error.errors });
+            }
+
+            const { email, password } = validationResult.data;
             const user = await User.findOne({ email });
 
             if (!user) {
-                return res.status(401).json({ error: "Invalid email" });
+                return res.status(400).json({ error: "Invalid email" });
             }
 
             const isSame = user.checkPassword(password); // Método que compara a senha do usuário com a senha criptografada no banco de dados e retorna um booleano indicando se as senhas são iguais, caso sejam, retorna true, caso contrário, retorna false
@@ -79,7 +92,7 @@ module.exports = {
                 token
             });
         } catch (err) {
-            return res.status(400).json({ error: err.message });
+            return res.status(500).json({ error: err.message });
         }
     },
 }
