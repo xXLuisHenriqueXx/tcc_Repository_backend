@@ -40,14 +40,34 @@ describe('Todo controller', () => {
             .set('Authorization', `Bearer ${token}`)
             .send(todoInput);
 
-        console.log(response.body);
-
         expect(response.statusCode).toBe(201);
         expect(response.body.title).toBe(todoInput.title);
         expect(response.body.user).toBe(user._id.toString());
         expect(response.body.tasks.length).toBe(2);
         expect(response.body.tasks[0].title).toBe(todoInput.tasks[0].title);
         expect(response.body.tasks[1].title).toBe(todoInput.tasks[1].title);
+
+        const updatedUser = await connection.models.User.findById(user._id);
+
+        expect(updatedUser.numberCreateTodos).toBe(1);
+        expect(updatedUser.achievements.length).toBe(1);
+        expect(updatedUser.level).toBe(1);
+    });
+
+    test('should create a todo without tasks for an authenticated user', async () => {
+        const todoInput = {
+            title: "teste",
+        }
+
+        const response = await supertest(app)
+            .post('/todo')
+            .set('Authorization', `Bearer ${token}`)
+            .send(todoInput);
+
+        expect(response.statusCode).toBe(201);
+        expect(response.body.title).toBe(todoInput.title);
+        expect(response.body.user).toBe(user._id.toString());
+        expect(response.body.tasks.length).toBe(0);
 
         const updatedUser = await connection.models.User.findById(user._id);
 
@@ -82,7 +102,7 @@ describe('Todo controller', () => {
         const response = await supertest(app)
             .put(`/todo/${todo._id}`)
             .set('Authorization', `Bearer ${token}`)
-            .send({ title: newTitle });
+            .send({ title: newTitle, tasks: todoInput.tasks });
 
         expect(response.statusCode).toBe(200);
         expect(response.body.title).toBe(newTitle);
@@ -115,9 +135,7 @@ describe('Todo controller', () => {
         const response = await supertest(app)
             .put(`/todo/${todo._id}`)
             .set('Authorization', `Bearer ${token}`)
-            .send({ tasks: newTasks });
-
-        console.log(response.body);
+            .send({ title: todoInput.title, tasks: newTasks });
 
         expect(response.statusCode).toBe(200);
         expect(response.body.tasks.length).toBe(2);

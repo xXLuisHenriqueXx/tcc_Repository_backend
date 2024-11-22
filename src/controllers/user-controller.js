@@ -1,9 +1,16 @@
-const User = require("../models/User")
+const User = require("../models/User");
+const { updateUserValidationSchema, updatePasswordValidationSchema } = require("../schemas/userValidationSchema");
 
 module.exports = {
     update: async (req, res) => {
         try {
-            const { name, email } = req.body;
+            const validationResult = updateUserValidationSchema.safeParse(req.body);
+
+            if (!validationResult.success) {
+                return res.status(400).json({ error: validationResult.error.errors });
+            }
+
+            const { name, email } = validationResult.data;
 
             const user = req.user;
 
@@ -20,7 +27,13 @@ module.exports = {
 
     updatePassword: async (req, res) => {
         try {
-            const { password, newPassword } = req.body;
+            const validationResult = updatePasswordValidationSchema.safeParse(req.body);
+
+            if (!validationResult.success) {
+                return res.status(400).json({ error: validationResult.error.errors });
+            }
+
+            const { password, newPassword } = validationResult.data;
 
             const user = req.user;
 

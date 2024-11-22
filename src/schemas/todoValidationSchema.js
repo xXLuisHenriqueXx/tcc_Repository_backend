@@ -1,8 +1,8 @@
 const { z } = require("zod");
 
 const taskSchema = z.object({
-    task: z.string().trim().min(1, { message: "Task must have at least 1 character" }).optional(),
-    isCompleted: z.boolean().optional(),
+    title: z.string().trim().min(1, { message: "Task title must have at least 1 character" }),
+    done: z.boolean(),
 });
 
 const createTodoValidationSchema = z.object({

@@ -1,7 +1,7 @@
 require('dotenv').config();
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-const { registerSchema, loginSchema } = require('../schemas/authValidationSchemas');
+const { registerSchema, loginSchema } = require('../schemas/authValidationSchema');
 const jwtSecret = process.env.JWT_KEY;
 
 module.exports = {

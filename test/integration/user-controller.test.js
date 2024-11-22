@@ -9,7 +9,7 @@ const jwtSecret = process.env.JWT_KEY;
 describe('User Controller', () => {
     let connection;
     let token;
-    let user = userFactory.build({ password: '123456' });
+    let user = userFactory.build({ password: '12345678' });
 
     beforeAll(async () => {
         connection = await database.connect();
@@ -36,26 +36,29 @@ describe('User Controller', () => {
         const response = await supertest(app)
             .put('/profile')
             .set('Authorization', `Bearer ${token}`)
-            .send({ name: 'New Name' });
+            .send({ name: 'New Name', email: "l@test.com" });
 
         expect(response.statusCode).toBe(204);
 
         const updatedUser = await connection.models.User.findById(user._id);
         expect(updatedUser.name).toBe('New Name');
+        expect(updatedUser.email).toBe('l@test.com')
     });
 
     test('should update user password', async () => {
-        const payload = { password: '123456', newPassword: 'qwe123' };
+        const payload = { password: '12345678', newPassword: 'qwe123456', confirmNewPassword: 'qwe123456' };
 
         const response = await supertest(app)
             .put('/profile/password')
             .set('Authorization', `Bearer ${token}`)
             .send(payload);
 
+        console.log(response.body)
+
         const updatedUser = await connection.models.User.findById(user._id);
 
         expect(response.statusCode).toBe(204);
-        expect(updatedUser.checkPassword('qwe123')).toBe(true);
+        expect(updatedUser.checkPassword('qwe123456')).toBe(true);
     });
 
     test('should show user profile', async () => {
