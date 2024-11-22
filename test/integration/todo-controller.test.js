@@ -40,6 +40,8 @@ describe('Todo controller', () => {
             .set('Authorization', `Bearer ${token}`)
             .send(todoInput);
 
+        console.log(response.body);
+
         expect(response.statusCode).toBe(201);
         expect(response.body.title).toBe(todoInput.title);
         expect(response.body.user).toBe(user._id.toString());
@@ -115,6 +117,8 @@ describe('Todo controller', () => {
             .set('Authorization', `Bearer ${token}`)
             .send({ tasks: newTasks });
 
+        console.log(response.body);
+
         expect(response.statusCode).toBe(200);
         expect(response.body.tasks.length).toBe(2);
         expect(response.body.tasks[0].title).toBe(newTasks[0].title);
@@ -149,4 +153,4 @@ describe('Todo controller', () => {
         expect(updatedUser.achievements.length).toBe(1);
         expect(updatedUser.level).toBe(1);
     });
-})
+});

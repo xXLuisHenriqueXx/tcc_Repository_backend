@@ -2,6 +2,7 @@ const Note = require('../models/Note');
 const calculateLevel = require('../utils/calculateLevel');
 const checkNotesAchievements = require('../utils/checkNotesAchievements');
 const User = require('../models/User');
+const { createNoteValidationSchema, updateNoteValidationSchema } = require('../schemas/noteValidationSchema');
 
 const noteController = {
     getNotes: async (req, res) => {
@@ -17,12 +18,17 @@ const noteController = {
     },
 
     create: async (req, res) => {
-        const { title, content } = req.body;
         const userId = req.user._id;
 
-        if (!title || !content) return res.status(400).json({ error: 'Title and content are required' });
-
         try {
+            const validationResult = createNoteValidationSchema.safeParse(req.body);
+
+            if (!validationResult.success) {
+                return res.status(400).json({ error: validationResult.error.errors });
+            }
+
+            const { title, content } = validationResult.data;
+
             const note = new Note({ title, content, user: userId });
             await note.save();
 
@@ -42,7 +48,6 @@ const noteController = {
     },
 
     update: async (req, res) => {
-        const { title, content } = req.body;
         const { _id } = req.params;
         const userId = req.user._id;
 
@@ -52,6 +57,14 @@ const noteController = {
             if (!note) {
                 return res.status(404).json({ error: 'Note not found' });
             }
+
+            const validationResult = updateNoteValidationSchema.safeParse(req.body);
+
+            if (!validationResult.success) {
+                return res.status(400).json({ error: validationResult.error.errors });
+            }
+
+            const { title, content } = validationResult.data;
 
             note.title = title || note.title;
             note.content = content || note.content;

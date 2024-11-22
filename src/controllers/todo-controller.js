@@ -2,6 +2,7 @@ const Todo = require('../models/Todo');
 const calculateLevel = require('../utils/calculateLevel');
 const checkTodosAchievements = require('../utils/checkTodosAchievements');
 const User = require('../models/User');
+const { updateTodoValidationSchema, createTodoValidationSchema } = require('../schemas/todoValidationSchema');
 
 const todoController = {
   getTodos: async (req, res) => {
@@ -17,16 +18,21 @@ const todoController = {
   },
 
   create: async (req, res) => {
-    const { title, tasks } = req.body;
     const userId = req.user._id;
 
-    if (!title) return res.status(400).json({ error: 'Title are required' });
-
     try {
+      const validationResult = createTodoValidationSchema.safeParse(req.body);
+
+      if (!validationResult.success) {
+        return res.status(400).json({ error: validationResult.error.errors });
+      }
+
+      const { title, tasks } = validationResult.data;
+
       const todo = new Todo({ 
         title, 
-        user: userId, 
-        tasks: tasks || [] 
+        tasks: tasks || [],
+        user: userId
       });
       await todo.save();
 
@@ -47,7 +53,6 @@ const todoController = {
   },
 
   update: async (req, res) => {
-    const { title, tasks } = req.body;
     const { _id } = req.params;
     const userId = req.user._id;
 
@@ -57,6 +62,14 @@ const todoController = {
       if (!todo) {
         return res.status(404).json({ msg: 'Todo not found' });
       }
+
+      const validationResult = updateTodoValidationSchema.safeParse(req.body);
+
+      if (!validationResult.success) {
+        return res.status(400).json({ error: validationResult.error.errors });
+      }
+
+      const { title, tasks } = validationResult.data;
 
       todo.title = title || todo.title;
       todo.tasks = tasks || todo.tasks;
